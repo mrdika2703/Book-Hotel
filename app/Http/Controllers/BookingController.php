@@ -12,6 +12,21 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookingController extends Controller
 {
+    public function indexx()
+{
+    $user = auth()->user(); // Ambil user yang sedang login
+
+    // Ambil semua booking berdasarkan id_user_tamu yang sama dengan id user yang sedang login
+    $booking = Booking::where('id_user_tamu', $user->id)->get();
+
+    // Ambil semua data kamar
+    $rooms = Kamar::all();
+
+    // Kirim data ke view
+    return view('home.bookingku.index', compact('user', 'booking', 'rooms'));
+}
+
+    
     public function index()
     {
         $user = auth()->user(); // Get logged-in user
@@ -21,14 +36,6 @@ class BookingController extends Controller
         return view('home.booking.index', compact('user', 'people', 'rooms'));
     }
 
-    public function index2()
-    {
-        $user = auth()->user(); // Get logged-in user
-        $people = People::whereIn('id', [$user->add_people1, $user->add_people2])->get(); // Adjust as needed
-        $rooms = Kamar::all();
-
-        return view('home.bookingku.index', compact('user', 'people', 'rooms'));
-    }
 
     public function store(Request $request)
     {

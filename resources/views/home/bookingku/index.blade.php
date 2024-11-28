@@ -8,17 +8,6 @@
                     <div class="text-center position-relative" style="z-index: 2;">
                         <span class="text-white d-block"></span>
                         <h1 class="text-capitalize mb-5 text-lg text-white">BookingKu</h1>
-
-                        <!-- Breadcrumb -->
-                        <!-- Uncomment jika diperlukan -->
-                        <!--
-                        <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
-                                <li class="breadcrumb-item active text-white-50" aria-current="page">About Us</li>
-                            </ol>
-                        </nav>
-                        -->
                     </div>
                 </div>
             </div>
@@ -28,12 +17,9 @@
     <div class="container my-5 main-content content-wrapper">
         <!-- Judul dan Tombol -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="text-primary fw-bold">📋 Data Orang</h3>
-            <button class="btn btn-primary btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#addModal">
-                <i class="bi bi-plus-circle me-2"></i>Tambah Data
-            </button>
+            <h3 class="text-primary fw-bold">📋 History Booking</h3>
         </div>
-    
+
         <!-- Card Pembungkus Tabel -->
         <div class="card shadow-sm">
             <div class="card-body">
@@ -48,38 +34,91 @@
                                 <th>Checkout</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($people as $person)
+                            @foreach ($booking as $book)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td>as</td>
-                                    <td>asas</td>
+                                    <td>{{ $book->kamar->jenis_kamar }}</td>
+                                    <td>{{ $book->people->nama_lengkap }}</td>
+                                    <td>{{ $book->tanggal_checkin }}</td>
+                                    <td>{{ $book->tanggal_checkout }}</td>
+                                    <td>{{ $book->status }}</td>
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <button class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#viewModal{{ $booking->id }}">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#editModal{{ $person->id }}">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </button>
+                                            data-bs-target="#viewModal{{ $book->id }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning btn-sm" onclick="generatePdfUrl({{ $book->id }})">
+                                            <i class="fa-solid fa-print"></i>
+                                        </button>
+                                        
                                         </div>
                                     </td>
                                 </tr>
+
+                                <!-- Modal View -->
+                                <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1" aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content shadow-lg">
+                                            <div class="modal-header bg-primary text-white">
+                                                <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
+                                                    <i class="bi bi-person-lines-fill me-2"></i>Detail Data Booking
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <!-- Data Pribadi -->
+                                                    <div class="col-md-6">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item">
+                                                                <strong>Nama Lengkap:</strong> <span>{{ $book->people->nama_lengkap }}</span>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <strong>Jenis Kamar:</strong> <span>{{ $book->kamar->jenis_kamar }}</span>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <strong>Tanggal Check-in:</strong> <span>{{ $book->tanggal_checkin }}</span>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <strong>Tanggal Check-out:</strong> <span>{{ $book->tanggal_checkout }}</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    <i class="bi bi-x-circle"></i> Tutup
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
-                    <br><br><br>
                 </div>
             </div>
         </div>
     </div>
 
-
-
+    <script>
+        function generatePdfUrl(bookingId) {
+            // Template URL dari route
+            let urlTemplate = "{{ route('booking.pdf', ':id') }}";
+    
+            // Ganti placeholder :id dengan bookingId
+            let url = urlTemplate.replace(':id', bookingId);
+    
+            // Redirect ke URL PDF
+            window.open(url, '_blank'); // Membuka di tab baru
+        }
+    </script>
 
 </x-home.layout>

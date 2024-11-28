@@ -35,9 +35,19 @@ class Booking extends Model
         return $this->belongsTo(People::class, 'id_people');
     }
 
+    public function peoplee()
+    {
+        return $this->belongsTo(People::class, 'id_people', 'id');
+    }
+
     // Relasi ke model Kamar
     public function kamar()
     {
         return $this->belongsTo(Kamar::class, 'id_kamar');
+    }
+
+    public function kamarr()
+    {
+        return $this->belongsTo(Kamar::class, 'id_kamar', 'id');
     }
 }

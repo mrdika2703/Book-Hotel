@@ -46,11 +46,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('/booking/pdf/{id}', [BookingController::class, 'generatePdf'])->name('booking.pdf');
+    Route::get('/home/bookingku', [BookingController::class, 'indexx'])->name('booking.indexx');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/home/bookingku', [BookingController::class, 'index2'])->name('booking.index2');
-});
+
 
 
 

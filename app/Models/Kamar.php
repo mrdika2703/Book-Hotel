@@ -22,4 +22,14 @@ class Kamar extends Model
         'foto2',
         'foto3',
     ];
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'id_kamar', 'id');
+    }
+
+    public function peoples()
+    {
+        return $this->hasMany(Booking::class, 'id_people', 'id');
+    }
 }
