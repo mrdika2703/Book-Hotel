@@ -1,0 +1,187 @@
+.content-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; /* Memastikan konten utama mengambil ruang yang tersisa */
+  }
+  
+.text-maroon {
+    color: #17a2b8 !important;
+}
+
+.breaknav {
+    height: 50px;
+    width: 100%;
+}
+
+nav div ul li .active {
+    background-color: #098497;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.gradienthome {
+    height: 250px;
+    width: 100%;
+    /* padding: 100px 100%; */
+    margin: 0 0;
+    position: absolute;
+    background: rgb(23,162,184);
+    background: linear-gradient(0deg, rgba(23,162,184,0) 64%, rgba(120, 203, 216, 0.667) 100%);
+}
+
+.profil {
+    background-color: #004e5a;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.my-bg {
+    color: white !important; 
+    background-color: #17a2b8 !important;
+}
+
+.fixContent {
+    height: 155px;
+    width: 155px;
+    background-color: #17a2b8;
+}
+
+.MainContent {
+    padding: 35px 0;
+}
+
+main > div > p {
+    text-align: justify;
+}
+
+main > div > div > h5 {
+    color: #17a2b8;
+    font-weight: bold;
+}
+
+.spacee {
+    margin: 5px 20px;
+}
+
+.visit {
+    background: rgb(0,78,90);
+    background: linear-gradient(0deg, rgba(0,78,90,1) 35%, rgba(23,162,184,1) 100%);
+}
+
+.footer {
+    color: white !important;
+    background: rgb(0,78,90);
+    background: linear-gradient(0deg, rgba(0,78,90,1) 35%, rgba(23,162,184,1) 100%);
+    padding-bottom: 0;
+    margin: 0;
+    bottom: 0;
+}
+
+.footer ul li a {
+    color: rgb(146, 21, 21) !important;
+}
+
+.line  {
+    height: 2.5px;
+    background-color: white;
+    margin: 25px 0;
+    
+}
+
+.card-title {
+    color: #17a2b8;
+}
+
+.HomePustaka {
+    height: 155px;
+    width: 155px;
+}
+
+/* Awalnya sembunyikan overlay dan teks */
+.fasilitas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Warna hitam transparan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.25rem; /* Sama dengan border-radius gambar */
+}
+
+.fasilitas-overlay .fasilitas-text {
+    font-family: "Exo", sans-serif;
+    color: #fff; /* Warna teks */
+    font-size: 1em;
+    /* text-align: center; */
+    padding: 25px;
+}
+
+.fasilitas-text > li {
+    list-style-type: bullet;
+}
+/* Tampilkan overlay dan teks saat fasilitas */
+.doctor-img:hover .fasilitas-overlay {
+    opacity: 1;
+}
+
+.b-logout {
+    background-color: #004e5a00;
+    text-align: center;
+    color: white;
+    font-size: 1em;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.b-logout:hover {
+    color: #e4fbff;
+    font-weight: bold;
+}
+
+.logout {
+    background-color: #004e5a !important;
+}
+.logout:hover {
+    background-color: #098497 !important;
+    color: #e4fbff;
+    font-weight: bold;
+}
+
+.choice-main {
+    font-weight: bolder !important;
+    text-transform: capitalize;
+}
+
+.choice-drop {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(233, 243, 252) !important;
+}
+
+.choice-drop:hover {
+    background-color: rgb(199, 233, 242) !important;
+}
+
+.choice-drop i {
+    padding: 0 8px 0 0;
+}
+
+.choice-drop a {
+    font-size: 1em !important;
+    font-weight: 150;
+}
+
+.choice-drop a:hover {
+    font-weight: bolder;
+}

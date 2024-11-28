@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Booking extends Model
+{
+    use HasFactory;
+    protected $table = 'booking';
+
+    protected $fillable = [
+        'id_user_tamu',
+        'id_people',
+        'tanggal_book',
+        'tanggal_checkin',
+        'tanggal_checkout',
+        'id_kamar',
+        'pembayaran',
+        'total_harga',
+        'status',
+        'jumlah_kamar',
+    ];
+
+    // Relasi ke model User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user_tamu');
+    }
+
+    // Relasi ke model People
+    public function people()
+    {
+        return $this->belongsTo(People::class, 'id_people');
+    }
+
+    // Relasi ke model Kamar
+    public function kamar()
+    {
+        return $this->belongsTo(Kamar::class, 'id_kamar');
+    }
+}
