@@ -3,7 +3,7 @@
         <div class="modal-content shadow-lg">
             <form action="{{ route('people.update', $person->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('PUT') <!-- Tambahkan PUT untuk memastikan metode update -->
+                @method('PUT')
 
                 <div class="modal-header bg-warning text-white">
                     <h5 class="modal-title" id="editModalLabel{{ $person->id }}">

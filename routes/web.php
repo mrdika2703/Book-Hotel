@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/home/add', [PeopleController::class, 'index'])->name('people.index');
     Route::post('/home/add', [PeopleController::class, 'store'])->name('people.store');
-    Route::post('/home/edit/{id}', [PeopleController::class, 'update'])->name('people.update');
+    Route::put('/home/edit/{id}', [PeopleController::class, 'update'])->name('people.update'); // Ganti post ke put
     Route::delete('/home/delete/{id}', [PeopleController::class, 'destroy'])->name('people.destroy');
 });
 
