@@ -38,7 +38,7 @@ class PeopleController extends Controller
         'nik.unique' => 'NIK sudah digunakan.',
     ]);
 
-    $fotoPath = $request->file('foto_ktp')->store('users/add_people', 'public');
+    $fotoPath = $request->file('foto_ktp')->store('images/ktp', 'public');
 
     $people = People::create([
         'nama_lengkap' => $request->nama_lengkap,
@@ -87,7 +87,7 @@ class PeopleController extends Controller
                 if ($fotoPath) {
                     Storage::disk('public')->delete($fotoPath);
                 }
-                $fotoPath = $request->file('foto_ktp')->store('users/add_people', 'public');
+                $fotoPath = $request->file('foto_ktp')->store('images/ktp', 'public');
             }
 
             $person->update([

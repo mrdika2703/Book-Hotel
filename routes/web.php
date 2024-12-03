@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminHome;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeopleController;
@@ -47,6 +48,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('/booking/pdf/{id}', [BookingController::class, 'generatePdf'])->name('booking.pdf');
     Route::get('/home/bookingku', [BookingController::class, 'indexx'])->name('booking.indexx');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', [AdminHome::class, 'showLogin'])->name('login');
+    Route::get('/admin/dashboard', [AdminHome::class, 'dashboard'])->name('dashboard');
 });
 
 
