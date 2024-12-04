@@ -13,7 +13,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="/admin/Dashboard" class="nav-link {{ request()->is('admin/Dashboard', 'admin') ? 'active' : '' }}">
+            <a href="/admin/Dashboard" class="nav-link {{ request()->is('admin/dashboard', 'admin') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -21,10 +21,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/admin/EditLiputan" class="nav-link {{ request()->is('admin/EditLiputan') ? 'active' : '' }}">
+            <a href="/admin/booking" class="nav-link {{ request()->is('admin/booking') ? 'active' : '' }}">
               <i class="nav-icon fas fa-pen-to-square"></i>
               <p>
-                Edit Data Liputan
+                Booking
               </p>
             </a>
           </li>

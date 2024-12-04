@@ -28,7 +28,7 @@
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
-                <form action="{{ route('dashboard') }}" method="POST">
+                <form action="{{ route('loginadm') }}" method="POST">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" placeholder="Username">
