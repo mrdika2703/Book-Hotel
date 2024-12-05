@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Booking;
+use App\Models\Kamar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class AdminHome extends Controller
 {
@@ -56,13 +59,58 @@ class AdminHome extends Controller
         $title = $request->query('title', 'Dashboard');
         $user = User::all();
         $authh = Auth::user();
+        $booking = Booking::all();
 
         // Kirim data ke view
         return view('admin.booking.index', [
             'title' => $title,
             'authh' => $authh,
-            'user' => $user
+            'user' => $user,
+            'booking' => $booking
         ]);
     }
+    
+    public function checkin(Request $request, Booking $booking)
+{
+    $booking->update([
+        'status' => 'checked-in',
+        'tanggal_checkin' => Carbon::now(),
+    ]);
+
+    return redirect()->route('booking')->with('success', 'Booking berhasil di-Check-in.');
+}
+
+public function checkout(Request $request, Booking $booking)
+{
+    $booking->update([
+        'status' => 'checked-out',
+        'tanggal_checkout' => Carbon::now(),
+    ]);
+
+    // Tambahkan jumlah kamar
+    $room = $booking->kamar; // Relasi dengan model Kamar
+    $room->update([
+        'jumlah_kamar' => $room->jumlah_kamar + 1,
+    ]);
+
+    return redirect()->route('booking')->with('success', 'Booking berhasil di-Check-out. Jumlah kamar telah diperbarui.');
+}
+
+public function cancel(Request $request, Booking $booking)
+{
+    $booking->update([
+        'status' => 'cancelled',
+    ]);
+
+    // Tambahkan jumlah kamar
+    $room = $booking->kamar; // Relasi dengan model Kamar
+    $room->update([
+        'jumlah_kamar' => $room->jumlah_kamar + 1,
+    ]);
+
+    return redirect()->route('booking')->with('success', 'Booking berhasil dibatalkan. Jumlah kamar telah diperbarui.');
+}
+
+
     
 }

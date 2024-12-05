@@ -67,7 +67,7 @@ class BookingController extends Controller
             'status' => 'booking',
         ]);
 
-        // $room->update(['jumlah_kamar' => $room->jumlah_kamar - 1]);
+        $room->update(['jumlah_kamar' => $room->jumlah_kamar - 1]);
 
         return redirect()->route('booking.index')->with([
             'success' => 'Booking berhasil dibuat!',

@@ -22,9 +22,33 @@
           </li>
           <li class="nav-item">
             <a href="/admin/booking" class="nav-link {{ request()->is('admin/booking') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-pen-to-square"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Booking
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/Users" class="nav-link {{ request()->is('admin/Users') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-clock-rotate-left"></i>
+              <p>
+                History Booking
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/Users" class="nav-link {{ request()->is('admin/Users') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-bed"></i>
+              <p>
+                Data Kamar
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/Users" class="nav-link {{ request()->is('admin/Users') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-hotel"></i>
+              <p>
+                Fasilitas Kamar
               </p>
             </a>
           </li>

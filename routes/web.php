@@ -53,5 +53,8 @@ Route::post('/admin', [AdminHome::class, 'loginadm']); // Rute untuk proses logi
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminHome::class, 'dashboard'])->name('dashboard');
     Route::get('/admin/booking', [AdminHome::class, 'booking'])->name('booking');
+    Route::patch('/admin/booking/{booking}/checkin', [AdminHome::class, 'checkin'])->name('booking.checkin');
+    Route::patch('/admin/booking/{booking}/checkout', [AdminHome::class, 'checkout'])->name('booking.checkout');
+    Route::patch('/admin/booking/{booking}/cancel', [AdminHome::class, 'cancel'])->name('booking.cancel');
 });
 
