@@ -1,4 +1,5 @@
-Web ini yang berjudul Book Hotel masih dalam proses pengembangan, kedepannya web ini akan memiliki banyak fitur seperti login Tamu, login admin dan resepsionis.
+Web ini yang berjudul Book Hotel masih dalam proses pengembangan, web ini ditujukan untuk mempermudah pemesanan kamar hotel dengan online dengan dilengkapi jenis kamar, jumlah kamar dan fasilitas hotel. Tidak hanya mempermudah tamu tapi admin dan resepsionis juga dipermudah karena bisa mengkonfirmasi data tamu dengan cepat dan akurat.
+Web ini menggunakan bahasa pemrograman php, js, dan css dan html.Framework yang digunakan adalah Laravel untuk php, Bootstrap untuk css, admin lte untuk menu admin, dan Sweat alert untuk menampilkan alerts. Kedepannya web ini akan memiliki banyak fitur seperti login Tamu, login admin dan resepsionis.
 
 Beberapa fitur yang akan dikembangkan yaitu :
 A. Login Tamu
