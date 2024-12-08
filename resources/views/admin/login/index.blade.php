@@ -19,7 +19,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="/admin"><b>Admin</b> Book Hotel</a>
+            <a href="/"><b>Admin</b> Book Hotel</a>
         </div>
         <div class="card">
             <div class="card-body login-card-body">
@@ -37,9 +37,6 @@
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
-                        @error('username')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
                     </div>
                     {{-- <div class="input-group mb-3">
                         <label for="username" class="form-label">Username</label>
@@ -82,7 +79,10 @@
                         <!-- /.col -->
                     </div>
                 </form>
-                <p class="text-center mt-3">Belum punya akun? <a href="{{ route('register') }}">Register</a></p>
+                @error('username')
+                            <p class="text-center mt-3 text-danger">{{ $message }}</p>
+                        @enderror
+                {{-- <p class="text-center mt-3">Belum punya akun? <a href="{{ route('register') }}">Register</a></p> --}}
             </div>
         </div>
     </div>

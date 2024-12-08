@@ -34,7 +34,15 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownProfil">
                             <li class="dropdown-item choice-main">{{ Auth::user()->nama_lengkap }}
                                 ({{ Auth::user()->nama_panggilan }})</li>
-                            <li class="dropdown-item choice-main">{{ Auth::user()->role }}</li>
+                            <li class="dropdown-item choice-main">
+                                @if (Auth::user()->role == "admin")
+                                    <a href="/admin/dashboard">{{ Auth::user()->role }}</a>
+                                @elseif (Auth::user()->role == "resepsionis")
+                                    <a href="/resepsionis/dashboard">{{ Auth::user()->role }}</a>
+                                @elseif (Auth::user()->role == "resepsionis")
+                                    {{ Auth::user()->role }}
+                                @endif
+                                </li>
                             <li class="dropdown-item choice-drop"><a href="#"><i class="fa-solid fa-user"></i>
                                     Profil</a></li>
                             <li class="dropdown-item choice-drop"><a href="/home/bookingku"><i

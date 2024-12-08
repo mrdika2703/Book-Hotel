@@ -28,7 +28,15 @@ class AdminHome extends Controller
         ]);
 
         if (Auth::attempt($request->only('username', 'password'))) {
-            return redirect()->route('dashboard');
+            $user = Auth::user();
+            if ($user->role === 'admin') {
+                return redirect()->route('dashboard');
+            } elseif ($user->role === 'resepsionis') {
+                return redirect()->route('resepsionis');
+            } else {
+                Auth::logout();
+                return redirect()->route('loginadm')->withErrors(['username' => 'Username bukan admin.']);
+            }
         }
 
         return back()->withErrors(['username' => 'Username atau password salah.']);
@@ -52,65 +60,5 @@ class AdminHome extends Controller
             'authh' => $authh
         ]);
     }
-
-
-    public function booking(Request $request)
-    {
-        $title = $request->query('title', 'Dashboard');
-        $user = User::all();
-        $authh = Auth::user();
-        $booking = Booking::all();
-
-        // Kirim data ke view
-        return view('admin.booking.index', [
-            'title' => $title,
-            'authh' => $authh,
-            'user' => $user,
-            'booking' => $booking
-        ]);
-    }
-    
-    public function checkin(Request $request, Booking $booking)
-{
-    $booking->update([
-        'status' => 'checked-in',
-        'tanggal_checkin' => Carbon::now(),
-    ]);
-
-    return redirect()->route('booking')->with('success', 'Booking berhasil di-Check-in.');
-}
-
-public function checkout(Request $request, Booking $booking)
-{
-    $booking->update([
-        'status' => 'checked-out',
-        'tanggal_checkout' => Carbon::now(),
-    ]);
-
-    // Tambahkan jumlah kamar
-    $room = $booking->kamar; // Relasi dengan model Kamar
-    $room->update([
-        'jumlah_kamar' => $room->jumlah_kamar + 1,
-    ]);
-
-    return redirect()->route('booking')->with('success', 'Booking berhasil di-Check-out. Jumlah kamar telah diperbarui.');
-}
-
-public function cancel(Request $request, Booking $booking)
-{
-    $booking->update([
-        'status' => 'cancelled',
-    ]);
-
-    // Tambahkan jumlah kamar
-    $room = $booking->kamar; // Relasi dengan model Kamar
-    $room->update([
-        'jumlah_kamar' => $room->jumlah_kamar + 1,
-    ]);
-
-    return redirect()->route('booking')->with('success', 'Booking berhasil dibatalkan. Jumlah kamar telah diperbarui.');
-}
-
-
     
 }

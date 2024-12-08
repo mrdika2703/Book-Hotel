@@ -28,16 +28,10 @@
                     Nama : {{ $authhName }}
                 </p>
                 <p class="dropdown-item">
-                    NIM : {{ $authhNim }}
-                </p>
-                <p class="dropdown-item">
-                    Kelas : IF-02-01
-                </p>
-                <p class="dropdown-item">
-                    Jurusan : Informatika
+                    Role : {{ $authhNim }}
                 </p>
                 <div class="dropdown-divider"></div>
-                <form action="{{ route('logout') }}" method="POST">
+                <form action="{{ route('logoutadm') }}" method="POST">
                     @csrf
                     <button type="submit" class="dropdown-item dropdown-footer">Logout</button>
                 </form>
