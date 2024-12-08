@@ -4,6 +4,35 @@
     <x-slot:authhNim>{{ $authh->role }}</x-slot:authhNim>
 
 
+    @if (session('success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "{{ session('error') }}",
+                showConfirmButton: true,
+            });
+        });
+    </script>
+@endif
+
+
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -11,442 +40,148 @@
 
                     <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">DataTable with default features</h3>
+                            <h3 class="card-title">DataTable with default features</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                          <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                              <th>Rendering engine</th>
-                              <th>Browser</th>
-                              <th>Platform(s)</th>
-                              <th>Engine version</th>
-                              <th>CSS grade</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                              <td>Trident</td>
-                              <td>Internet
-                                Explorer 4.0
-                              </td>
-                              <td>Win 95+</td>
-                              <td> 4</td>
-                              <td>X</td>
-                            </tr>
-                            <tr>
-                              <td>Trident</td>
-                              <td>Internet
-                                Explorer 5.0
-                              </td>
-                              <td>Win 95+</td>
-                              <td>5</td>
-                              <td>C</td>
-                            </tr>
-                            <tr>
-                              <td>Trident</td>
-                              <td>Internet
-                                Explorer 5.5
-                              </td>
-                              <td>Win 95+</td>
-                              <td>5.5</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Trident</td>
-                              <td>Internet
-                                Explorer 6
-                              </td>
-                              <td>Win 98+</td>
-                              <td>6</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Trident</td>
-                              <td>Internet Explorer 7</td>
-                              <td>Win XP SP2+</td>
-                              <td>7</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Trident</td>
-                              <td>AOL browser (AOL desktop)</td>
-                              <td>Win XP</td>
-                              <td>6</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Firefox 1.0</td>
-                              <td>Win 98+ / OSX.2+</td>
-                              <td>1.7</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Firefox 1.5</td>
-                              <td>Win 98+ / OSX.2+</td>
-                              <td>1.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Firefox 2.0</td>
-                              <td>Win 98+ / OSX.2+</td>
-                              <td>1.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Firefox 3.0</td>
-                              <td>Win 2k+ / OSX.3+</td>
-                              <td>1.9</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Camino 1.0</td>
-                              <td>OSX.2+</td>
-                              <td>1.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Camino 1.5</td>
-                              <td>OSX.3+</td>
-                              <td>1.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Netscape 7.2</td>
-                              <td>Win 95+ / Mac OS 8.6-9.2</td>
-                              <td>1.7</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Netscape Browser 8</td>
-                              <td>Win 98SE+</td>
-                              <td>1.7</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Netscape Navigator 9</td>
-                              <td>Win 98+ / OSX.2+</td>
-                              <td>1.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.0</td>
-                              <td>Win 95+ / OSX.1+</td>
-                              <td>1</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.1</td>
-                              <td>Win 95+ / OSX.1+</td>
-                              <td>1.1</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.2</td>
-                              <td>Win 95+ / OSX.1+</td>
-                              <td>1.2</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.3</td>
-                              <td>Win 95+ / OSX.1+</td>
-                              <td>1.3</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.4</td>
-                              <td>Win 95+ / OSX.1+</td>
-                              <td>1.4</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.5</td>
-                              <td>Win 95+ / OSX.1+</td>
-                              <td>1.5</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.6</td>
-                              <td>Win 95+ / OSX.1+</td>
-                              <td>1.6</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.7</td>
-                              <td>Win 98+ / OSX.1+</td>
-                              <td>1.7</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Mozilla 1.8</td>
-                              <td>Win 98+ / OSX.1+</td>
-                              <td>1.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Seamonkey 1.1</td>
-                              <td>Win 98+ / OSX.2+</td>
-                              <td>1.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Gecko</td>
-                              <td>Epiphany 2.20</td>
-                              <td>Gnome</td>
-                              <td>1.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Webkit</td>
-                              <td>Safari 1.2</td>
-                              <td>OSX.3</td>
-                              <td>125.5</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Webkit</td>
-                              <td>Safari 1.3</td>
-                              <td>OSX.3</td>
-                              <td>312.8</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Webkit</td>
-                              <td>Safari 2.0</td>
-                              <td>OSX.4+</td>
-                              <td>419.3</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Webkit</td>
-                              <td>Safari 3.0</td>
-                              <td>OSX.4+</td>
-                              <td>522.1</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Webkit</td>
-                              <td>OmniWeb 5.5</td>
-                              <td>OSX.4+</td>
-                              <td>420</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Webkit</td>
-                              <td>iPod Touch / iPhone</td>
-                              <td>iPod</td>
-                              <td>420.1</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Webkit</td>
-                              <td>S60</td>
-                              <td>S60</td>
-                              <td>413</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Opera 7.0</td>
-                              <td>Win 95+ / OSX.1+</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Opera 7.5</td>
-                              <td>Win 95+ / OSX.2+</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Opera 8.0</td>
-                              <td>Win 95+ / OSX.2+</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Opera 8.5</td>
-                              <td>Win 95+ / OSX.2+</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Opera 9.0</td>
-                              <td>Win 95+ / OSX.3+</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Opera 9.2</td>
-                              <td>Win 88+ / OSX.3+</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Opera 9.5</td>
-                              <td>Win 88+ / OSX.3+</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Opera for Wii</td>
-                              <td>Wii</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Nokia N800</td>
-                              <td>N800</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Presto</td>
-                              <td>Nintendo DS browser</td>
-                              <td>Nintendo DS</td>
-                              <td>8.5</td>
-                              <td>C/A<sup>1</sup></td>
-                            </tr>
-                            <tr>
-                              <td>KHTML</td>
-                              <td>Konqureror 3.1</td>
-                              <td>KDE 3.1</td>
-                              <td>3.1</td>
-                              <td>C</td>
-                            </tr>
-                            <tr>
-                              <td>KHTML</td>
-                              <td>Konqureror 3.3</td>
-                              <td>KDE 3.3</td>
-                              <td>3.3</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>KHTML</td>
-                              <td>Konqureror 3.5</td>
-                              <td>KDE 3.5</td>
-                              <td>3.5</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Tasman</td>
-                              <td>Internet Explorer 4.5</td>
-                              <td>Mac OS 8-9</td>
-                              <td>-</td>
-                              <td>X</td>
-                            </tr>
-                            <tr>
-                              <td>Tasman</td>
-                              <td>Internet Explorer 5.1</td>
-                              <td>Mac OS 7.6-9</td>
-                              <td>1</td>
-                              <td>C</td>
-                            </tr>
-                            <tr>
-                              <td>Tasman</td>
-                              <td>Internet Explorer 5.2</td>
-                              <td>Mac OS 8-X</td>
-                              <td>1</td>
-                              <td>C</td>
-                            </tr>
-                            <tr>
-                              <td>Misc</td>
-                              <td>NetFront 3.1</td>
-                              <td>Embedded devices</td>
-                              <td>-</td>
-                              <td>C</td>
-                            </tr>
-                            <tr>
-                              <td>Misc</td>
-                              <td>NetFront 3.4</td>
-                              <td>Embedded devices</td>
-                              <td>-</td>
-                              <td>A</td>
-                            </tr>
-                            <tr>
-                              <td>Misc</td>
-                              <td>Dillo 0.8</td>
-                              <td>Embedded devices</td>
-                              <td>-</td>
-                              <td>X</td>
-                            </tr>
-                            <tr>
-                              <td>Misc</td>
-                              <td>Links</td>
-                              <td>Text only</td>
-                              <td>-</td>
-                              <td>X</td>
-                            </tr>
-                            <tr>
-                              <td>Misc</td>
-                              <td>Lynx</td>
-                              <td>Text only</td>
-                              <td>-</td>
-                              <td>X</td>
-                            </tr>
-                            <tr>
-                              <td>Misc</td>
-                              <td>IE Mobile</td>
-                              <td>Windows Mobile 6</td>
-                              <td>-</td>
-                              <td>C</td>
-                            </tr>
-                            <tr>
-                              <td>Misc</td>
-                              <td>PSP browser</td>
-                              <td>PSP</td>
-                              <td>-</td>
-                              <td>C</td>
-                            </tr>
-                            <tr>
-                              <td>Other browsers</td>
-                              <td>All others</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>U</td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                              <th>Rendering engine</th>
-                              <th>Browser</th>
-                              <th>Platform(s)</th>
-                              <th>Engine version</th>
-                              <th>CSS grade</th>
-                            </tr>
-                            </tfoot>
-                          </table>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Tamu</th>
+                                        <th>Jenis Kamar</th>
+                                        <th>Checkin</th>
+                                        <th>Checkout</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($booking as $book)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $book->people->nama_lengkap }}</td>
+                                            <td>{{ $book->kamar->jenis_kamar }}</td>
+                                            <td>{{ $book->tanggal_checkin }}</td>
+                                            <td>{{ $book->tanggal_checkout }}</td>
+                                            <td> <span class="badge bg-info">{{ $book->status }}</span></td>
+
+                                            <td class="btn-group d-flex justify-content-center">
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#viewModal{{ $book->id }}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-warning btn-sm"
+                                                    data-toggle="modal" data-target="#modal-edit">
+                                                    <i class="fa-solid fa-edit"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <!-- Modal View -->
+                                        <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1"
+                                            aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content shadow-lg">
+                                                    <div class="modal-header bg-primary text-white">
+                                                        <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
+                                                            <i class="bi bi-person-lines-fill me-2"></i>Detail Data
+                                                            Booking
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <!-- Data Pribadi -->
+                                                            <div class="col-md-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <strong>Nama Lengkap:</strong>
+                                                                        <span>{{ $book->people->nama_lengkap }}</span>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <strong>Jenis Kamar:</strong>
+                                                                        <span>{{ $book->kamar->jenis_kamar }}</span>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <strong>Tanggal Check-in:</strong>
+                                                                        <span>{{ $book->tanggal_checkin }}</span>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <strong>Tanggal Check-out:</strong>
+                                                                        <span>{{ $book->tanggal_checkout }}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">
+                                                            <i class="bi bi-x-circle"></i> Tutup
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal Edit -->
+                                        <!-- /.modal -->
+
+                                        <div class="modal fade" id="modal-edit">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Booking</h4>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <form action="{{ route('booking.checkin', $book->id) }}" method="POST">
+                                                          @csrf
+                                                          @method('PATCH')
+                                                          <button type="submit" class="btn btn-warning">Check-in</button>
+                                                      </form>
+                                                      <form action="{{ route('booking.checkout', $book->id) }}" method="POST">
+                                                          @csrf
+                                                          @method('PATCH')
+                                                          <button type="submit" class="btn btn-success">Check-out</button>
+                                                      </form>
+                                                      <form action="{{ route('booking.cancel', $book->id) }}" method="POST">
+                                                          @csrf
+                                                          @method('PATCH')
+                                                          <button type="submit" class="btn btn-danger">Cancel</button>
+                                                      </form>
+                                                  </div>
+                                                  
+
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /.modal -->
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Tamu</th>
+                                        <th>Jenis Kamar</th>
+                                        <th>Checkin</th>
+                                        <th>Checkout</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                         <!-- /.card-body -->
-                      </div>
+                    </div>
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
