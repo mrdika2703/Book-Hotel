@@ -39,7 +39,7 @@
                                     <a href="/admin/dashboard">{{ Auth::user()->role }}</a>
                                 @elseif (Auth::user()->role == "resepsionis")
                                     <a href="/resepsionis/dashboard">{{ Auth::user()->role }}</a>
-                                @elseif (Auth::user()->role == "resepsionis")
+                                @elseif (Auth::user()->role == "tamu")
                                     {{ Auth::user()->role }}
                                 @endif
                                 </li>
