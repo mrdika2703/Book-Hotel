@@ -158,7 +158,7 @@
                                                         <p class="mb-3">Pilih status tamu :</p>
                                                         <div class="d-flex flex-column gap-2">
                                                             <!-- Check-in Form -->
-                                                            <form action="{{ route('booking.checkin', $book->id) }}" method="POST">
+                                                            <form action="{{ route('rbooking.checkin', $book->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('PATCH')
                                                                 <button type="submit" class="btn btn-info w-100">
@@ -167,7 +167,7 @@
                                                             </form>
                                         
                                                             <!-- Check-out Form -->
-                                                            <form action="{{ route('booking.checkout', $book->id) }}" method="POST">
+                                                            <form action="{{ route('rbooking.checkout', $book->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('PATCH')
                                                                 <button type="submit" class="btn btn-success w-100">
@@ -176,7 +176,7 @@
                                                             </form>
                                         
                                                             <!-- Cancel Form -->
-                                                            <form action="{{ route('booking.cancel', $book->id) }}" method="POST">
+                                                            <form action="{{ route('rbooking.cancel', $book->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('PATCH')
                                                                 <button type="submit" class="btn btn-danger w-100">
