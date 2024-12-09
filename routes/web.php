@@ -78,7 +78,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/resepsionis/dashboard', [ResDashboard::class, 'dashboard'])->name('resepsionis');
 
-    Route::get('/resepsionis/booking', [ResBooking::class, 'booking'])->name('rbooking');
+    Route::get('/resepsionis/booking', [ResBooking::class, 'rbooking'])->name('rbooking');
     Route::patch('/resepsionis/booking/{booking}/checkin', [ResBooking::class, 'checkin'])->name('rbooking.checkin');
     Route::patch('/resepsionis/booking/{booking}/checkout', [ResBooking::class, 'checkout'])->name('rbooking.checkout');
     Route::patch('/resepsionis/booking/{booking}/cancel', [ResBooking::class, 'cancel'])->name('rbooking.cancel');

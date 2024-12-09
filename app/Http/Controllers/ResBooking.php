@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class ResBooking extends Controller
 {
-    public function booking(Request $request)
+    public function rbooking(Request $request)
     {
         $title = $request->query('title', 'Data Booking');
         $user = User::all();
