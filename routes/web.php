@@ -78,11 +78,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/resepsionis/dashboard', [ResDashboard::class, 'dashboard'])->name('resepsionis');
 
-    Route::get('/resepsionis/booking', [ResBooking::class, 'booking'])->name('booking');
-    Route::patch('/resepsionis/booking/{booking}/checkin', [ResBooking::class, 'checkin'])->name('booking.checkin');
-    Route::patch('/resepsionis/booking/{booking}/checkout', [ResBooking::class, 'checkout'])->name('booking.checkout');
-    Route::patch('/resepsionis/booking/{booking}/cancel', [ResBooking::class, 'cancel'])->name('booking.cancel');
+    Route::get('/resepsionis/booking', [ResBooking::class, 'booking'])->name('rbooking');
+    Route::patch('/resepsionis/booking/{booking}/checkin', [ResBooking::class, 'checkin'])->name('rbooking.checkin');
+    Route::patch('/resepsionis/booking/{booking}/checkout', [ResBooking::class, 'checkout'])->name('rbooking.checkout');
+    Route::patch('/resepsionis/booking/{booking}/cancel', [ResBooking::class, 'cancel'])->name('rbooking.cancel');
 
-    Route::get('/resepsionis/history-booking', [ResBooking::class, 'hbooking'])->name('hbooking');
+    Route::get('/resepsionis/history-booking', [ResBooking::class, 'hbooking'])->name('rhbooking');
 });
 

@@ -36,7 +36,7 @@ class ResBooking extends Controller
             'tanggal_checkin' => Carbon::now(),
         ]);
 
-        return redirect()->route('booking')->with('success', 'Booking berhasil di-Check-in.');
+        return redirect()->route('rbooking')->with('success', 'Booking berhasil di-Check-in.');
     }
 
     public function checkout(Request $request, Booking $booking)
@@ -52,7 +52,7 @@ class ResBooking extends Controller
             'jumlah_kamar' => $room->jumlah_kamar + 1,
         ]);
 
-        return redirect()->route('booking')->with('success', 'Booking berhasil di-Check-out. Jumlah kamar telah diperbarui.');
+        return redirect()->route('rbooking')->with('success', 'Booking berhasil di-Check-out. Jumlah kamar telah diperbarui.');
     }
 
     public function cancel(Request $request, Booking $booking)
@@ -67,7 +67,7 @@ class ResBooking extends Controller
             'jumlah_kamar' => $room->jumlah_kamar + 1,
         ]);
 
-        return redirect()->route('booking')->with('success', 'Booking berhasil dibatalkan. Jumlah kamar telah diperbarui.');
+        return redirect()->route('rbooking')->with('success', 'Booking berhasil dibatalkan. Jumlah kamar telah diperbarui.');
     }
 
     public function hbooking(Request $request)
