@@ -18,7 +18,7 @@ class AdminBooking extends Controller
         $title = $request->query('title', 'Data Booking');
         $user = User::all();
         $authh = Auth::user();
-        $booking = Booking::all();
+        $booking = Booking::whereIn('status', ['booking', 'checkin'])->get();
 
         // Kirim data ke view
         return view('admin.booking.index', [
