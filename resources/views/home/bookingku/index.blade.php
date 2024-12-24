@@ -17,7 +17,7 @@
     <div class="container my-5 main-content content-wrapper">
         <!-- Judul dan Tombol -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="text-primary fw-bold">📋 History Booking</h3>
+            <h3 class="text-cyan fw-bold"><i class="fa-solid fa-bed"></i> History Booking</h3>
         </div>
 
         <!-- Card Pembungkus Tabel -->
@@ -63,7 +63,7 @@
                                 <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1" aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content shadow-lg">
-                                            <div class="modal-header bg-primary text-white">
+                                            <div class="modal-header my-bg text-white">
                                                 <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
                                                     <i class="bi bi-person-lines-fill me-2"></i>Detail Data Booking
                                                 </h5>

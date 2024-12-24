@@ -5,94 +5,86 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_displays_login_page(): void
+    /** @test */
+    public function only_authenticated_users_can_access_profil_routes()
     {
-        $response = $this->get(route('login'));
-        $response->assertStatus(200);
-        $response->assertViewIs('login.index');
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_displays_register_page(): void
-    {
-        $response = $this->get(route('register'));
-        $response->assertStatus(200);
-        $response->assertViewIs('login.register');
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_registers_a_new_user(): void
-    {
-        $data = [
-            'username' => 'testuser',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
-            'nama_lengkap' => 'Test User',
-            'nama_panggilan' => 'Test',
-            'jenis_kelamin' => 'L',
-            'email' => 'test@example.com',
-            'no_telepon' => '081234567890',
-        ];
-
-        $response = $this->post(route('register'), $data);
-
+        // Testing unauthorized access
+        $response = $this->get(route('profil.index'));
         $response->assertRedirect(route('login'));
-        $this->assertDatabaseHas('users', [
-            'username' => 'testuser',
-            'email' => 'test@example.com',
-        ]);
+
+        $response = $this->post(route('profil.update', ['id' => 1]));
+        $response->assertRedirect(route('login'));
+
+        $response = $this->post(route('profil.change_password', ['id' => 1]));
+        $response->assertRedirect(route('login'));
+
+        $response = $this->delete(route('profil.delete_account', ['id' => 1]));
+        $response->assertRedirect(route('login'));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_logs_in_a_user(): void
-    {
-        $user = User::factory()->create([
-            'username' => 'testuser',
-            'password' => bcrypt('password123'),
-        ]);
-
-        $response = $this->post(route('login'), [
-            'username' => $user->username,
-            'password' => 'password123',
-        ]);
-
-        $response->assertRedirect(route('home'));
-        $this->assertAuthenticatedAs($user);
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_does_not_log_in_with_invalid_credentials(): void
-    {
-        $user = User::factory()->create([
-            'username' => 'testuser',
-            'password' => bcrypt('password123'),
-        ]);
-
-        $response = $this->post(route('login'), [
-            'username' => $user->username,
-            'password' => 'wrongpassword',
-        ]);
-
-        $response->assertSessionHasErrors(['username']);
-        $this->assertGuest();
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_logs_out_a_user(): void
+    /** @test */
+    public function authenticated_user_can_view_their_profile()
     {
         $user = User::factory()->create();
 
-        $this->actingAs($user);
+        $response = $this->actingAs($user)->get(route('profil.index'));
 
-        $response = $this->post(route('logout'));
+        $response->assertStatus(200);
+        $response->assertViewIs('profil.index'); // Pastikan view yang dikembalikan sesuai
+    }
 
-        $response->assertRedirect(route('login'));
-        $this->assertGuest();
+    /** @test */
+    public function user_can_update_their_profile()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('profil.update', $user->id), [
+            'username' => 'newusername',
+            'nama_lengkap' => 'New Full Name',
+            'email' => 'newemail@example.com',
+        ]);
+
+        $response->assertRedirect();
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'username' => 'newusername',
+            'nama_lengkap' => 'New Full Name',
+            'email' => 'newemail@example.com',
+        ]);
+    }
+
+    /** @test */
+    public function user_can_change_their_password()
+    {
+        $user = User::factory()->create([
+            'password' => Hash::make('oldpassword'),
+        ]);
+
+        $response = $this->actingAs($user)->post(route('profil.change_password', $user->id), [
+            'password' => 'newpassword',
+            'password_confirmation' => 'newpassword',
+        ]);
+
+        $response->assertRedirect();
+        $this->assertTrue(Hash::check('newpassword', $user->fresh()->password));
+    }
+
+    /** @test */
+    public function user_can_delete_their_account()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->delete(route('profil.delete_account', $user->id));
+
+        $response->assertRedirect();
+        $this->assertDatabaseMissing('users', [
+            'id' => $user->id,
+        ]);
     }
 }

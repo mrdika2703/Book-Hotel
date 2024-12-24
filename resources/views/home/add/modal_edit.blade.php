@@ -5,7 +5,7 @@
                 @csrf
                 @method('PUT')
 
-                <div class="modal-header bg-warning text-white">
+                <div class="modal-header my-bg text-white">
                     <h5 class="modal-title" id="editModalLabel{{ $person->id }}">
                         <i class="bi bi-pencil-square me-2"></i>Edit Data
                     </h5>

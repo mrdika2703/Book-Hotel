@@ -1,7 +1,7 @@
 <div class="modal fade" id="viewModal{{ $person->id }}" tabindex="-1" aria-labelledby="viewModalLabel{{ $person->id }}" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content shadow-lg">
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header my-bg text-white">
                 <h5 class="modal-title" id="viewModalLabel{{ $person->id }}">
                     <i class="bi bi-person-lines-fill me-2"></i>Detail Data
                 </h5>

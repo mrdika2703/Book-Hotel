@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user_tamu');
             $table->unsignedBigInteger('id_people');
-            $table->date('tanggal_book');
-            $table->date('tanggal_checkin');
-            $table->date('tanggal_checkout');
+            $table->dateTime('tanggal_book');
+            $table->dateTime('tanggal_checkin');
+            $table->dateTime('tanggal_checkout');
             $table->unsignedBigInteger('id_kamar');
             $table->string('pembayaran', 100);
             $table->decimal('total_harga', 10, 2);

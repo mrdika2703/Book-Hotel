@@ -3,7 +3,7 @@
         <div class="modal-content shadow-lg">
             <form action="{{ route('people.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-header bg-primary text-white">
+                <div class="modal-header my-bg text-white">
                     <h5 class="modal-title" id="addModalLabel">
                         <i class="bi bi-person-plus me-2"></i>Tambah Data
                     </h5>
