@@ -18,7 +18,7 @@
     <div class="container my-5 main-content content-wrapper">
         <!-- Judul Halaman -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-bold text-cyan"><i class="fa-solid fa-user"></i>  Profil Pengguna</h3>
+            <h3 class="fw-bold text-cyan"><i class="fa-solid fa-user"></i> Profil Pengguna</h3>
         </div>
 
         <!-- Profil Card -->
@@ -27,8 +27,9 @@
                 <div class="row align-items-center">
                     <!-- Gambar Profil -->
                     <div class="col-md-4 text-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9SPHGbT7zpUnQWxX6G23hhBVjxxAioJDoSNePax1i6FPVuO1bD2NweVg44RenkPB3vTI&usqp=CAU" alt="Foto Profil" class="img-fluid rounded-circle mb-3">
-                        <h5 class="fw-bold mt-2 text-cyan" >{{ $user->nama_panggilan }}</h5>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9SPHGbT7zpUnQWxX6G23hhBVjxxAioJDoSNePax1i6FPVuO1bD2NweVg44RenkPB3vTI&usqp=CAU"
+                            alt="Foto Profil" class="img-fluid rounded-circle mb-3">
+                        <h5 class="fw-bold mt-2 text-cyan">{{ $user->nama_panggilan }}</h5>
                         <p class="text-muted">{{ $user->role }}</p>
                     </div>
 
@@ -41,7 +42,7 @@
                         <div class="row mb-4">
                             <div class="col-sm-6">
                                 <h6 class="fw-bold text-cyan">Nama Lengkap :</h6>
-                                <p class="text-dark mb-0">{{ $user->nama_lengkap }} ({{$user->nama_panggilan}})</p>
+                                <p class="text-dark mb-0">{{ $user->nama_lengkap }} ({{ $user->nama_panggilan }})</p>
                             </div>
                             <div class="col-sm-6">
                                 <h6 class="fw-bold text-cyan">Username :</h6>
@@ -58,9 +59,9 @@
                             <div class="col-sm-6">
                                 <h6 class="fw-bold text-cyan">Jenis Kelamin :</h6>
                                 <p class="text-dark mb-0">
-                                    @if ( $user->jenis_kelamin == "L")
+                                    @if ($user->jenis_kelamin == 'L')
                                         Laki-Laki
-                                    @elseif ( $user->jenis_kelamin == "P")
+                                    @elseif ($user->jenis_kelamin == 'P')
                                         Perempuan
                                     @else
                                         Unknown
@@ -87,9 +88,12 @@
                         </div>
 
                         <div class="text-end mt-4">
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfilModal{{$user->id}}">Edit Profil</button>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal{{$user->id}}">Ganti Password</button>
-                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal{{$user->id}}">Hapus Akun</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#editProfilModal{{ $user->id }}">Edit Profil</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#changePasswordModal{{ $user->id }}">Ganti Password</button>
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteAccountModal{{ $user->id }}">Hapus Akun</button>
                         </div>
                     </div>
                 </div>
@@ -98,7 +102,8 @@
     </div>
 
     <!-- Modal Edit Profil -->
-    <div class="modal fade" id="editProfilModal{{$user->id}}" tabindex="-1" aria-labelledby="editProfilModalLabel{{$user->id}}" aria-hidden="true">
+    <div class="modal fade" id="editProfilModal{{ $user->id }}" tabindex="-1"
+        aria-labelledby="editProfilModalLabel{{ $user->id }}" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header my-bg">
@@ -110,18 +115,20 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="{{ $user->nama_lengkap }}">
-                        @error('nama_lengkap')
+                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"
+                                value="{{ $user->nama_lengkap }}">
+                            @error('nama_lengkap')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="nama_panggilan" class="form-label">Nama Panggilan</label>
-                            <input type="text" class="form-control" id="nama_panggilan" name="nama_panggilan" value="{{ $user->nama_panggilan }}">
+                            <input type="text" class="form-control" id="nama_panggilan" name="nama_panggilan"
+                                value="{{ $user->nama_panggilan }}">
                             @error('nama_panggilan')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
@@ -142,7 +149,8 @@
 
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}">
+                            <input type="text" class="form-control" id="username" name="username"
+                                value="{{ $user->username }}">
                             @error('username')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -150,7 +158,8 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="{{ $user->email }}">
                             @error('email')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -158,7 +167,8 @@
 
                         <div class="mb-3">
                             <label for="no_telepon" class="form-label">No Telepon</label>
-                            <input type="number" class="form-control" id="email" name="no_telepon" value="{{ $user->no_telepon }}">
+                            <input type="number" class="form-control" id="email" name="no_telepon"
+                                value="{{ $user->no_telepon }}">
                             @error('email')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -166,10 +176,15 @@
 
                         <div class="mb-3">
                             <label for="passwordConfirmation" class="form-label">Konfirmasi Password</label>
-                            <input type="password" class="form-control" id="passwordConfirmation" name="password_confirmation" required placeholder="Masukkan password Anda">
-                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password')">
-                                Show
-                            </button>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="passwordConfirmation"
+                                    name="password_confirmation" required placeholder="Masukkan password Anda">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="togglePassword('passwordConfirmation')">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                            </div>
+
                             @error('password_confirmation')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -180,14 +195,15 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
     </div>
 
     <!-- Modal Ganti Password -->
-    <div class="modal fade" id="changePasswordModal{{$user->id}}" tabindex="-1" aria-labelledby="changePasswordModalLabel{{$user->id}}" aria-hidden="true">
+    <div class="modal fade" id="changePasswordModal{{ $user->id }}" tabindex="-1"
+        aria-labelledby="changePasswordModalLabel{{ $user->id }}" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header my-bg">
@@ -199,24 +215,41 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="currentPassword" class="form-label">Password Saat Ini</label>
-                            <input type="password" class="form-control" id="currentPassword" name="current_password" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="currentPassword"
+                                    name="current_password" required>
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="togglePassword('currentPassword')">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                            </div>
                         </div>
-                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('currentPassword')">
-                            Show
-                        </button>
+
                         <div class="mb-3">
                             <label for="newPassword" class="form-label">Password Baru</label>
-                            <input type="password" class="form-control" id="newPassword" name="new_password" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="newPassword" name="new_password"
+                                    required>
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="togglePassword('newPassword')">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                            </div>
+
                         </div>
-                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('newPassword')">
-                            Show
-                        </button>
+
                         <div class="mb-3">
                             <label for="confirmNewPassword" class="form-label">Konfirmasi Password Baru</label>
-                            <input type="password" class="form-control" id="confirmNewPassword" name="new_password_confirmation" required>
-                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('new_password_confirmation')">
-                                Show
-                            </button>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirmNewPassword"
+                                    name="new_password_confirmation" required>
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="togglePassword('confirmNewPassword')">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                            </div>
+
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -227,10 +260,11 @@
             </div>
         </div>
     </div>
-    
+
 
     <!-- Modal Hapus Akun -->
-    <div class="modal fade" id="deleteAccountModal{{$user->id}}" tabindex="-1" aria-labelledby="deleteAccountModalLabel{{$user->id}}" aria-hidden="true">
+    <div class="modal fade" id="deleteAccountModal{{ $user->id }}" tabindex="-1"
+        aria-labelledby="deleteAccountModalLabel{{ $user->id }}" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header my-bg">
@@ -244,7 +278,15 @@
                         <p>Apakah Anda yakin ingin menghapus akun Anda? Tindakan ini tidak dapat dibatalkan.</p>
                         <div class="mb-3">
                             <label for="deletePasswordConfirmation" class="form-label">Konfirmasi Password</label>
-                            <input type="password" class="form-control" id="deletePasswordConfirmation" name="password_confirmation" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="deletePasswordConfirmation"
+                                    name="password_confirmation" required>
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="togglePassword('deletePasswordConfirmation')">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -311,13 +353,17 @@
 
         function togglePassword(fieldId) {
             const passwordField = document.getElementById(fieldId);
-            const button = passwordField.nextElementSibling;
+            const button = passwordField.nextElementSibling; // Tombol toggle
+            const icon = button.querySelector("i"); // Ikon di dalam tombol
+
             if (passwordField.type === "password") {
                 passwordField.type = "text";
-                button.innerText = "Hide";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
             } else {
                 passwordField.type = "password";
-                button.innerText = "Show";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
             }
         }
     </script>

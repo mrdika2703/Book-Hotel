@@ -66,35 +66,63 @@ class ProfilController extends Controller
     }
 
     public function password(Request $request, $id)
-{
-    try {
-        // Cari user berdasarkan ID
-        $user = User::findOrFail($id);
+    {
+        try {
+            // Cari user berdasarkan ID
+            $user = User::findOrFail($id);
 
-        // Validasi input
-        $request->validate([
-            'current_password' => 'required|string',
-            'new_password' => 'required|string|min:8|confirmed',
-        ], [
-            'current_password.required' => 'Password saat ini wajib diisi.',
-            'new_password.required' => 'Password baru wajib diisi.',
-            'new_password.min' => 'Password baru minimal 8 karakter.',
-            'new_password.confirmed' => 'Konfirmasi password baru tidak cocok.',
-        ]);
+            // Validasi input
+            $request->validate([
+                'current_password' => 'required|string',
+                'new_password' => 'required|string|min:8|confirmed',
+            ], [
+                'current_password.required' => 'Password saat ini wajib diisi.',
+                'new_password.required' => 'Password baru wajib diisi.',
+                'new_password.min' => 'Password baru minimal 8 karakter.',
+                'new_password.confirmed' => 'Konfirmasi password baru tidak cocok.',
+            ]);
 
-        // Verifikasi password saat ini
-        if (!Hash::check($request->current_password, $user->password)) {
-            return redirect()->back()->withErrors(['current_password' => 'Password saat ini salah.']);
+            // Verifikasi password saat ini
+            if (!Hash::check($request->current_password, $user->password)) {
+                return redirect()->back()->withErrors(['current_password' => 'Password saat ini salah.']);
+            }
+
+            // Update password baru
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return redirect()->back()->with('success', 'Password berhasil diubah!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
-
-        // Update password baru
-        $user->password = Hash::make($request->new_password);
-        $user->save();
-
-        return redirect()->back()->with('success', 'Password berhasil diubah!');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
     }
-}
 
+    public function destroy(Request $request, $id)
+    {
+        try {
+            $user = User::findOrFail($id);
+
+            // Validasi input
+            $request->validate([
+                'password_confirmation' => 'required|string',
+            ], [
+                'password_confirmation.required' => 'Konfirmasi password wajib diisi.',
+            ]);
+
+            // Verifikasi password lama
+            if (!Hash::check($request->password_confirmation, $user->password)) {
+                return redirect()->back()->withErrors(['password_confirmation' => 'Password salah.'])->withInput();
+            }
+
+            // Hapus data pengguna
+            $user->delete();
+
+            // Kirim flash message sukses
+            return redirect()->route('login')->with('success', 'Akun berhasil dihapus');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors($e->validator->errors())->withInput();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
 }

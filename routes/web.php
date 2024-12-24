@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home/profil', [ProfilController::class, 'index'])->name('profil.index');
     Route::post('/home/profil/edit/{id}', [ProfilController::class, 'update'])->name('profil.update');
     Route::post('/home/profil/password/{id}', [ProfilController::class, 'password'])->name('profil.change_password');
-    Route::post('/home/profil/destroy/{id}', [ProfilController::class, 'destroy'])->name('profil.delete_account');
+    Route::delete('/home/profil/destroy/{id}', [ProfilController::class, 'destroy'])->name('profil.delete_account');
     // Route::post('/home/profil', [PeopleController::class, 'store'])->name('profil.store');
     // Route::put('/home/profil/edit/{id}', [PeopleController::class, 'update'])->name('profil.update'); 
     // Route::delete('/home/profil/delete/{id}', [PeopleController::class, 'destroy'])->name('profil.destroy');
