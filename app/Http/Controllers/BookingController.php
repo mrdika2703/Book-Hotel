@@ -13,20 +13,20 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class BookingController extends Controller
 {
     public function indexx()
-{
-    $user = auth()->user(); // Ambil user yang sedang login
+    {
+        $user = auth()->user(); // Ambil user yang sedang login
 
-    // Ambil semua booking berdasarkan id_user_tamu yang sama dengan id user yang sedang login
-    $booking = Booking::where('id_user_tamu', $user->id)->get();
+        // Ambil semua booking berdasarkan id_user_tamu yang sama dengan id user yang sedang login
+        $booking = Booking::where('id_user_tamu', $user->id)->get();
 
-    // Ambil semua data kamar
-    $rooms = Kamar::all();
+        // Ambil semua data kamar
+        $rooms = Kamar::all();
 
-    // Kirim data ke view
-    return view('home.bookingku.index', compact('user', 'booking', 'rooms'));
-}
+        // Kirim data ke view
+        return view('home.bookingku.index', compact('user', 'booking', 'rooms'));
+    }
 
-    
+
     public function index()
     {
         $user = auth()->user(); // Get logged-in user
@@ -83,6 +83,4 @@ class BookingController extends Controller
         $pdf = Pdf::loadView('home.booking.pdf', compact('booking'));
         return $pdf->stream('booking.pdf');
     }
-
-
 }

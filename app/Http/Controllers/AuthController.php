@@ -33,6 +33,8 @@ class AuthController extends Controller
             'jenis_kelamin' => ['required', Rule::in(['L', 'P'])],
             'email' => 'required|email|max:100|unique:users,email',
             'no_telepon' => 'required|string|max:50',
+        ], [
+            'username.unique' => 'Username sudah ada.',
         ]);
 
         User::create([

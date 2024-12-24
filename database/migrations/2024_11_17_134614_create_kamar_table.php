@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('jenis_kamar', 100);
             $table->tinyInteger('jumlah_kamar');
-            $table->text('fasilitas'); // Bisa berupa JSON untuk menyimpan daftar fasilitas
+            $table->text('fasilitas');
             $table->text('deskripsi_kamar');
             $table->decimal('harga_kamar', 10, 2);
             $table->string('foto1')->nullable();

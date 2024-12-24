@@ -10,10 +10,10 @@
                     <div class="text-center position-relative" style="z-index: 2;">
                         <span class="text-white d-block"></span>
                         <h1 class="text-capitalize mb-5 text-lg text-white">Data Orang</h1>
-    
+
                         <!-- Breadcrumb -->
                         <!-- Uncomment jika diperlukan -->
-                        <!-- 
+                        <!--
                         <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
@@ -26,8 +26,8 @@
             </div>
         </div>
     </section>
-    
-    
+
+
 
     <div class="container my-5 main-content">
         <!-- Judul dan Tombol -->
@@ -37,7 +37,7 @@
                 <i class="bi bi-plus-circle me-2"></i>Tambah Data
             </button>
         </div>
-    
+
         <!-- Card Pembungkus Tabel -->
         <div class="card shadow-sm">
             <div class="card-body">
@@ -67,7 +67,8 @@
                                                 data-bs-target="#editModal{{ $person->id }}">
                                                 <i class="fa-solid fa-pen"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ $person->id }})">
+                                            <button class="btn btn-danger btn-sm"
+                                                onclick="confirmDelete({{ $person->id }})">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </div>
@@ -87,8 +88,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <!-- Modal Tambah -->
     @include('home.add.modal_add')
@@ -113,44 +114,44 @@
         });
 
         function confirmDelete(id) {
-        Swal.fire({
-            title: 'Anda yakin?',
-            text: "Data yang dihapus tidak dapat dikembalikan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, hapus!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('delete-form-' + id).submit();
-            }
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        @if ($errors->any())
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                html: `
+                title: 'Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            @if ($errors->any())
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    html: `
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 `,
-            });
-        @endif
+                });
+            @endif
 
-        @if (session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil',
-                text: '{{ session('success') }}',
-            });
-        @endif
-    });
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ session('success') }}',
+                });
+            @endif
+        });
     </script>
 
 

@@ -2,8 +2,9 @@
     <nav class="navbar navbar-expand-lg navigation fixed-top my-bg" id="navbar" style="color: white;"
         data-bs-theme="dark">
         <div class="container">
-            <a class="navbar-brand" href="#" style="margin-top: 0%">
-                <img src="{{ asset('NusantaraConnect.png') }}" alt="" class="img-fluid w-50">
+            <a class="navbar-brand fs-4" href="#" style="margin: 0%">
+                <span style="font-weight: 150">Booking</span> <i>Hotel</i>
+                {{-- <img src="{{ asset('NusantaraConnect.png') }}" alt="" class="img-fluid w-50"> --}}
             </a>
 
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
@@ -43,7 +44,7 @@
                                     {{ Auth::user()->role }}
                                 @endif
                                 </li>
-                            <li class="dropdown-item choice-drop"><a href="#"><i class="fa-solid fa-user"></i>
+                            <li class="dropdown-item choice-drop"><a href="/home/profil"><i class="fa-solid fa-user"></i>
                                     Profil</a></li>
                             <li class="dropdown-item choice-drop"><a href="/home/bookingku"><i
                                         class="fa-solid fa-cart-shopping"></i> Pesananku</a></li>

@@ -15,7 +15,8 @@
                                     <h3 class="card-title">Data Kamar</h3>  
                                 </div>
                                 <div class="col-4 d-flex justify-content-end">
-                                    <button class="btn btn-primary">Tambah Data</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#addModal">Tambah Data</button>
                                 </div>
                             </div>
                         </div>
@@ -49,58 +50,28 @@
                                                     data-bs-target="#viewModal{{ $users->id }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </button>
-                                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#viewModal{{ $users->id }}">
+                                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $users->id }}">
                                                     <i class="fa-solid fa-edit"></i>
                                                 </button>
                                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#viewModal{{ $users->id }}">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
+                                                        onclick="confirmDelete({{ $users->id }})">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        <form id="delete-form-{{ $users->id }}"
+                                                            action="{{ route('users.destroy', $users->id) }}" method="POST"
+                                                            style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </button>
                                             </td>
                                         </tr>
-                                        <!-- Modal View -->
-                                        <div class="modal fade" id="viewModal{{ $users->id }}" tabindex="-1"
-                                            aria-labelledby="viewModalLabel{{ $users->id }}" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content shadow-lg">
-                                                    <div class="modal-header bg-primary text-white">
-                                                        <h5 class="modal-title" id="viewModalLabel{{ $users->id }}">
-                                                            <i class="bi bi-person-lines-fill me-2"></i>Detail Data
-                                                            Booking
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
 
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <!-- Data Pribadi -->
-                                                            <div class="col">
-                                                                <ul class="list-group">
-                                                                    <li class="list-group-item">
-                                                                        <strong>Nama Lengkap:</strong>
-                                                                        <span>{{ $users->nama_lengkap }}</span>
-                                                                    </li>
-                                                                    <li class="list-group-item">
-                                                                        <strong>Password:</strong>
-                                                                        <span>{{ $users->password }}</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        @include('admin.users.view', ['users' => $users])
+                                        @include('admin.users.edit', ['users' => $users])
 
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">
-                                                            <i class="bi bi-x-circle"></i> Tutup
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endforeach
+
+                                    @include('admin.users.add', ['users' => $users])
                                 </tbody>
                             </table>
                         </div>
@@ -118,4 +89,58 @@
         <!-- /.modal -->
 
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ session('success') }}',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            @endif
+        });
+
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            @if ($errors->any())
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    html: `
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                `,
+                });
+            @endif
+
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ session('success') }}',
+                });
+            @endif
+        });
+    </script>
 </x-admin.layout>

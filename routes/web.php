@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ResBooking;
 use App\Http\Controllers\ResDashboard;
 
@@ -47,6 +48,14 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/home/edit/{id}', [PeopleController::class, 'update'])->name('people.update'); 
     Route::delete('/home/delete/{id}', [PeopleController::class, 'destroy'])->name('people.destroy');
 
+    Route::get('/home/profil', [ProfilController::class, 'index'])->name('profil.index');
+    Route::post('/home/profil/edit/{id}', [ProfilController::class, 'update'])->name('profil.update');
+    Route::post('/home/profil/password/{id}', [ProfilController::class, 'password'])->name('profil.change_password');
+    Route::post('/home/profil/destroy/{id}', [ProfilController::class, 'destroy'])->name('profil.delete_account');
+    // Route::post('/home/profil', [PeopleController::class, 'store'])->name('profil.store');
+    // Route::put('/home/profil/edit/{id}', [PeopleController::class, 'update'])->name('profil.update'); 
+    // Route::delete('/home/profil/delete/{id}', [PeopleController::class, 'destroy'])->name('profil.destroy');
+
     // Route untuk BookingController
     Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
@@ -68,10 +77,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/history-booking', [AdminBooking::class, 'hbooking'])->name('hbooking');
 
     Route::get('/admin/kamar', [AdminKamar::class, 'kamar'])->name('kamar');
+    Route::post('/admin/kamar', [AdminKamar::class, 'store'])->name('kamar.store');
+    Route::put('/admin/kamar/{id}', [AdminKamar::class, 'update'])->name('kamar.update');
+    Route::delete('/admin/kamar/delete/{id}', [AdminKamar::class, 'destroy'])->name('kamar.destroy');
 
     Route::get('/admin/hotel', [AdminHotel::class, 'hotel'])->name('hotel');
+    Route::post('/admin/hotel', [AdminHotel::class, 'store'])->name('hotel.store');
+    Route::put('/admin/hotel/{id}', [AdminHotel::class, 'update'])->name('hotel.update');
+    Route::delete('/admin/hotel/delete/{id}', [AdminHotel::class, 'destroy'])->name('hotel.destroy');
 
     Route::get('/admin/users', [AdminUsers::class, 'users'])->name('users');
+    Route::post('/admin/users', [AdminUsers::class, 'store'])->name('users.store');
+    Route::put('/admin/users/{id}', [AdminUsers::class, 'update'])->name('users.update');
+    Route::delete('/admin/users/delete/{id}', [AdminUsers::class, 'destroy'])->name('users.destroy');
 });
 
 

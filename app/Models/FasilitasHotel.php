@@ -11,8 +11,8 @@ class FasilitasHotel extends Model
     protected $fillable = [
         'nama_fasilitas',
         'deskripsi_fasilitas',
-        'foto_1',
-        'foto_2',
-        'foto_3'
+        'foto1',
+        'foto2',
+        'foto3'
     ];
 }

@@ -12,14 +12,15 @@
                         <div class="card-header">
                             <div class="row justify-content-between">
                                 <div class="col-4">
-                                    <h3 class="card-title">Data Kamar</h3>  
+                                    <h3 class="card-title">Data Kamar</h3>
                                 </div>
                                 <div class="col-4 d-flex justify-content-end">
-                                    <button class="btn btn-primary">Tambah Data</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#addModal">Tambah Data</button>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -43,58 +44,35 @@
                                             <td>{{ $kamar->fasilitas }}</td>
 
                                             <td class="btn-group d-flex justify-content-center">
-                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#viewModal{{ $kamar->id }}">
-                                                    <i class="fa-solid fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#viewModal{{ $kamar->id }}">
-                                                    <i class="fa-solid fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#viewModal{{ $kamar->id }}">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
+                                                @if (isset($kamar) && is_object($kamar))
+                                                    <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#viewModal{{ $kamar->id }}">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $kamar->id }}">
+                                                        <i class="fa-solid fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                        onclick="confirmDelete({{ $kamar->id }})">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        <form id="delete-form-{{ $kamar->id }}"
+                                                            action="{{ route('kamar.destroy', $kamar->id) }}" method="POST"
+                                                            style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </button>
+                                                @endif
                                             </td>
                                         </tr>
-                                        <!-- Modal View -->
-                                        <div class="modal fade" id="viewModal{{ $kamar->id }}" tabindex="-1"
-                                            aria-labelledby="viewModalLabel{{ $kamar->id }}" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content shadow-lg">
-                                                    <div class="modal-header bg-primary text-white">
-                                                        <h5 class="modal-title" id="viewModalLabel{{ $kamar->id }}">
-                                                            <i class="bi bi-person-lines-fill me-2"></i>Detail Data
-                                                            Booking
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <!-- Data Pribadi -->
-                                                            <div class="col-md-6">
-                                                                <ul class="list-group">
-                                                                    <li class="list-group-item">
-                                                                        <strong>Nama Lengkap:</strong>
-                                                                        <span>{{ $kamar->jenis_kamar }}</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">
-                                                            <i class="bi bi-x-circle"></i> Tutup
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
+                                        @include('admin.kamar.view', ['kamar' => $kamar])
+                                        @include('admin.kamar.edit', ['kamar' => $kamar])
+                                        
                                     @endforeach
+
+                                        @include('admin.kamar.add', ['kamar' => $kamar])
+                                         
                                 </tbody>
                             </table>
                         </div>
@@ -112,4 +90,59 @@
         <!-- /.modal -->
 
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ session('success') }}',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            @endif
+        });
+
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            @if ($errors->any())
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    html: `
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                `,
+                });
+            @endif
+
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ session('success') }}',
+                });
+            @endif
+        });
+    </script>
+
 </x-admin.layout>

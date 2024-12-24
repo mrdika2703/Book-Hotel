@@ -62,7 +62,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="no_telepon" class="form-label">No Telepon</label>
-                                <input type="text" class="form-control" id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}" required>
+                                <input type="number" class="form-control" id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Register</button>
                         </form>
