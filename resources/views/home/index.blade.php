@@ -227,7 +227,7 @@
                 <div class="col-lg-6 offset-lg-6">
                     <div class="section-title">
                         <h4 style="color: white">Segera Booking</h4>
-                        <h2 class="mb-4" style="color: white">Hotel Permata Indah</h2>
+                        <h2 class="mb-4" style="color: white">Hotel DK</h2>
                         <div class="divider  my-4" style="background: white;"></div>
                     </div>
                 </div>
@@ -235,14 +235,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 offset-lg-6">
                     <p style="color: white; text-align: justify;">
-                        Galeri Indonesia Kaya merupakan ruang edutainment budaya persembahan Bakti Budaya Djarum
-                        Foundation yang berbasis teknologi digital dari Indonesia untuk Indonesia yang menyuguhkan
-                        informasi kekayaan budaya nusantara. Mulai dari alat musik tradisional, mainan tradisional, baju
-                        adat, sampai informasi tentang kuliner, pariwisata, tradisi dan kesenian dikemas secara digital
-                        dan interaktif di tempat pertunjukan ini.
+                        Selamat datang di Hotel DK, tempat di mana kenyamanan dan layanan berkualitas bertemu. Dengan lokasi strategis, kami menawarkan pengalaman menginap yang tak terlupakan. Nikmati kamar-kamar elegan yang dirancang untuk memenuhi kebutuhan Anda, mulai dari Standard Room yang nyaman hingga Suite Room yang mewah dengan fasilitas premium. Hotel kami juga menyediakan layanan kelas atas, restoran dengan berbagai pilihan menu lezat, serta fasilitas pendukung seperti Wi-Fi cepat, pusat kebugaran, dan ruang pertemuan. Baik untuk perjalanan bisnis, liburan keluarga, atau acara spesial, Hotel DK adalah pilihan sempurna untuk Anda. Pesan sekarang dan rasakan kenyamanan serta layanan terbaik di Hotel DK!
                     </p>
                     <p style="color: white; text-align: justify;">
-                        Terletak di Grand Indonesia, Galeri Indonesia Kaya menawarkan alternatif dalam mempelajari
+                        Terletak di jawa timur Indonesia, Hotel Kaya menawarkan alternatif dalam mempelajari
                         tradisi budaya Indonesia dengan cara yang lebih modern, menyenangkan, mudah dan gratis.
                     </p>
                     <div class="row">
@@ -271,8 +267,7 @@
                     <div class="section-title text-center">
                         <h2 class="mb-4">Tipe Kamar Kami</h2>
                         <div class="divider mx-auto my-4"></div>
-                        <p>Hari hari budaya yang harus diikuti oleh masyarakat indonesai untuk melestarikan budaya
-                            indonesia supaya tidak berhenti di kita</p>
+                        <p>Hotel kami memiliki 4 tipe kamar: Standard Room, Deluxe Room, Suite Room, serta Family Room yang luas.</p>
                     </div>
                 </div>
             </div>
@@ -327,7 +322,7 @@
                 <div class="col-lg-6 col-sm-6 col-md-6 mb-4">
                     <div class="position-relative doctor-inner-box border border-info border-2 rounded" style="border-color: #17a2b8 !important">
                         <div class="content mt-3 text-center">
-                            <h4 class="mb-0" style="padding-bottom: 5px"><a href="/tokoh/detail" style="color: #004e5a">Deluxe Room</a></h4>
+                            <h4 class="mb-0" style="padding-bottom: 5px"><a href="/tokoh/detail" style="color: #004e5a">Regular Room</a></h4>
                         </div>
                         <div class="doctor-profile">
                             <div class="doctor-img position-relative">
@@ -351,6 +346,8 @@
                     </div>
                 </div>
 
+
+                <!-- TIPE KAMAR -->
                 <div class="col-lg-6 col-sm-6 col-md-6 mb-4">
                     <div class="position-relative doctor-inner-box border border-info border-2 rounded" style="border-color: #17a2b8 !important">
                         <div class="content mt-3 text-center">
@@ -381,7 +378,7 @@
                 <div class="col-lg-6 col-sm-6 col-md-6 mb-4">
                     <div class="position-relative doctor-inner-box border border-info border-2 rounded" style="border-color: #17a2b8 !important">
                         <div class="content mt-3 text-center">
-                            <h4 class="mb-0" style="padding-bottom: 5px"><a href="/tokoh/detail" style="color: #004e5a">Deluxe Room</a></h4>
+                            <h4 class="mb-0" style="padding-bottom: 5px"><a href="/tokoh/detail" style="color: #004e5a">VIP Room</a></h4>
                         </div>
                         <div class="doctor-profile">
                             <div class="doctor-img position-relative">
@@ -408,11 +405,11 @@
                 <div class="col-lg-6 col-sm-6 col-md-6 mb-4">
                     <div class="position-relative doctor-inner-box border border-info border-2 rounded" style="border-color: #17a2b8 !important">
                         <div class="content mt-3 text-center">
-                            <h4 class="mb-0" style="padding-bottom: 5px"><a href="/tokoh/detail" style="color: #004e5a">Deluxe Room</a></h4>
+                            <h4 class="mb-0" style="padding-bottom: 5px"><a href="/tokoh/detail" style="color: #004e5a">Family Room</a></h4>
                         </div>
                         <div class="doctor-profile">
                             <div class="doctor-img position-relative">
-                                <img src="images/home/DRoom.jpg" alt="doctor-image"
+                                <img src="images/home/familyroom.jpg" alt="doctor-image"
                                     class="img-fluid w-100 border border-info border-4 rounded"
                                     style="border-color: #17a2b8 !important">
 
