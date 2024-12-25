@@ -32,7 +32,7 @@ class AuthController extends Controller
             'nama_panggilan' => 'required|string|max:25',
             'jenis_kelamin' => ['required', Rule::in(['L', 'P'])],
             'email' => 'required|email|max:100|unique:users,email',
-            'no_telepon' => 'required|string|max:50',
+            'no_telepon' => 'required|string|max:14',
         ], [
             'username.unique' => 'Username sudah ada.',
         ]);

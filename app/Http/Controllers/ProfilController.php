@@ -30,7 +30,7 @@ class ProfilController extends Controller
                 'nama_panggilan' => 'required|string|max:25',
                 'jenis_kelamin' => ['required', Rule::in(['L', 'P'])],
                 'email' => 'required|email|max:100|unique:users,email,' . $id,
-                'no_telepon' => 'required|string|max:50',
+                'no_telepon' => 'required|string|max:14',
                 'password_confirmation' => 'required|string',
             ], [
                 'username.unique' => 'Username sudah ada.',

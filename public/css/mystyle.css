@@ -21,6 +21,16 @@
     width: 100%;
 }
 
+.mybutton {
+    background-color: rgb(23,162,184) !important;
+    color: white !important;
+}
+
+.mybutton:hover {
+    background-color: #098497 !important;
+    color: white !important;
+}
+
 nav div ul li .active {
     background-color: #098497;
     border-radius: 10px;
