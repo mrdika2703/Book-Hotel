@@ -68,6 +68,8 @@ Route::get('/admin', [AdminHome::class, 'showLogin'])->name('loginadm'); // Rute
 Route::post('/admin', [AdminHome::class, 'loginadm']); // Rute untuk proses login admin
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminHome::class, 'dashboard'])->name('dashboard');
+    Route::get('/admin/chart-data', [AdminHome::class, 'getChartData'])->name('chart.data');
+    Route::get('/admin/doughnut-data', [AdminHome::class, 'getDoughnutData'])->name('doughnut.data');
 
     Route::get('/admin/booking', [AdminBooking::class, 'booking'])->name('booking');
     Route::patch('/admin/booking/{booking}/checkin', [AdminBooking::class, 'checkin'])->name('booking.checkin');

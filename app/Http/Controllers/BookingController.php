@@ -30,7 +30,7 @@ class BookingController extends Controller
     public function index()
     {
         $user = auth()->user(); // Get logged-in user
-        $people = People::whereIn('id', [$user->add_people1, $user->add_people2])->get(); // Adjust as needed
+        $people = People::whereIn('id', [$user->add_people1, $user->add_people2, $user->add_people3, $user->add_people4, $user->add_people5, $user->add_people6, $user->add_people7, $user->add_people8, $user->add_people9, $user->add_people10])->get(); // Adjust as needed
         $rooms = Kamar::all();
 
         return view('home.booking.index', compact('user', 'people', 'rooms'));
@@ -59,8 +59,8 @@ class BookingController extends Controller
             'id_user_tamu' => auth()->id(),
             'id_people' => $request->id_people,
             'tanggal_book' => now(),
-            'tanggal_checkin' => $request->tanggal_checkin,
-            'tanggal_checkout' => $request->tanggal_checkout,
+            'tanggal_checkin' => Carbon::parse($request->tanggal_checkin)->setTime(12, 0),
+            'tanggal_checkout' => Carbon::parse($request->tanggal_checkout)->setTime(12, 0),
             'id_kamar' => $request->id_kamar,
             'pembayaran' => $request->pembayaran,
             'total_harga' => $totalPrice,
