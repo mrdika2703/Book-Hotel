@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Des 2024 pada 15.18
+-- Waktu pembuatan: 26 Des 2024 pada 16.13
 -- Versi server: 8.0.30
 -- Versi PHP: 8.2.4
 
@@ -180,8 +180,10 @@ CREATE TABLE `kamar` (
 --
 
 INSERT INTO `kamar` (`id`, `jenis_kamar`, `jumlah_kamar`, `fasilitas`, `deskripsi_kamar`, `harga_kamar`, `foto1`, `foto2`, `foto3`, `created_at`, `updated_at`) VALUES
-(7, 'Delux Room', 14, 'tempat tidur King-size atau Twin Bed,bathub,air panas,,shower,handuk lembut,televisi LED,wifi,minibar,brankas elektronik,', 'Kamar Deluxe menghadirkan kenyamanan elegan dengan fasilitas lengkap.', 1000000.00, 'images/kamar/1pKvMzjdRnBR2U6RzOF4WEcNibGeg5EAZqkjFuOm.jpg', 'images/kamar/HTAIkctT4VuNyqKbvbYkHe3TtVtcc1KWo40ccT0y.jpg', 'images/kamar/h8p9nCM1DmVYL5E8iGbGGjhdN3RFAGy1mCWgrExc.jpg', '2024-12-25 18:16:53', '2024-12-26 10:15:38'),
-(8, 'Double', 5, 'Kamar 1', 'xczxczcxczc', 100000.00, 'images/kamar/SgD08QIn54MrcwbtSW1NSqEFKJOxIxQdehjwRRi4.jpg', 'images/kamar/fNDNxK5bDwpWGN9WzIBTlgx6yj7OoESbAYyAyQTb.jpg', 'images/kamar/aKOpvq3RH4qVOTTWKXmehexzJxHJY9lUM6BjyDfD.jpg', '2024-12-26 13:27:12', '2024-12-26 13:27:12');
+(7, 'Delux Room', 14, '1 Kasur Besar | 1 AC | Toilet Pribadi | 1 Lemari Besar |  1 TV  |  1 Meja | 2 Kursi', 'Kamar mewah yang memanjakan tidur anda', 250000.00, 'images/kamar/1pKvMzjdRnBR2U6RzOF4WEcNibGeg5EAZqkjFuOm.jpg', 'images/kamar/HTAIkctT4VuNyqKbvbYkHe3TtVtcc1KWo40ccT0y.jpg', 'images/kamar/h8p9nCM1DmVYL5E8iGbGGjhdN3RFAGy1mCWgrExc.jpg', '2024-12-25 18:16:53', '2024-12-26 15:04:07'),
+(9, 'Single Room', 25, '1 Kasur | 1 Lemari | 1 AC | TV | Meja Kursi | Toilet Pribadi', 'Kamar murah dengan fasilitas mewah, cocok untuk anda yang singgah sementara', 150000.00, 'images/kamar/8Imu1laex95dqvL6v85hZ6geGlX9g5eE8rzGtqXj.jpg', 'images/kamar/LVunYao0nrF4wT9OpKveysoxNUIJaAvspx0l17gh.jpg', 'images/kamar/TEDwFlvbKzEfyyTRyFzsukm0B1NsxmzMSjEViitu.jpg', '2024-12-26 15:03:17', '2024-12-26 15:10:34'),
+(10, 'Twin Bed Room', 15, '2 Kasur | 1 Lemari | 1 AC | TV | Meja Kursi | Toilet Pribadi', 'Solusi murah dengan 2 kamar dan fasilitas mewah', 200000.00, 'images/kamar/FlEVl3VmhF54aW8MvUoQheo5Oz950qge9IIA7tkZ.jpg', 'images/kamar/BMMfRPvSl3utwvXTHfiDKfHAqaM63tGaPryrbZZ2.jpg', 'images/kamar/bO5VoyUXTWEGErcmOQcklUrlkPdz6LTWXmmzjfrA.jpg', '2024-12-26 15:06:40', '2024-12-26 15:10:44'),
+(11, 'Family Room', 15, '1 Kasur Besar | 1 AC | Toilet Pribadi | 1 Lemari Besar |  1 TV  |  1 Meja | 2 Kursi', 'Kamar beruangan lebar yang dikususkan untuk anda yang berkeluarga', 200000.00, 'images/kamar/dHpLlPgX3fOWYnvHdLg3lFt4md5AjixoDGvm3Ehg.jpg', 'images/kamar/1rylhUeky04Cx5ihyIujCi8p88fq2OfTNJhTQhdO.jpg', 'images/kamar/EJEagFktwqzAVRo4111gMrvRWJUMJ6BZHMOudm7n.jpg', '2024-12-26 15:09:38', '2024-12-26 15:09:38');
 
 -- --------------------------------------------------------
 
@@ -257,7 +259,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('lXgjxGpGSoffpQFM9y0bixWZiTTlcm2lfBdj6DXV', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaHBNSzNLM3pNSUFZWktxNUJZOHp2S1dnMjJhUk53cnJzQ1VjYnJpaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly9ib29rLWhvdGVsLnRlc3QvYWRtaW4vY2hhcnQtZGF0YSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1735220738);
+('nOroDKNekNrd0eOuKG7AK37EwtO3cvmAi3XGgZ75', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaHBNSzNLM3pNSUFZWktxNUJZOHp2S1dnMjJhUk53cnJzQ1VjYnJpaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9ib29rLWhvdGVsLnRlc3QvYWRtaW4va2FtYXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1735225872);
 
 -- --------------------------------------------------------
 
@@ -427,7 +429,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT untuk tabel `kamar`
 --
 ALTER TABLE `kamar`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
