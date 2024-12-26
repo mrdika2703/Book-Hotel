@@ -34,7 +34,7 @@ class AdminKamar extends Controller
     {
         $request->validate([
             'jenis_kamar' => 'required|string|max:100|unique:kamar,jenis_kamar',
-            'jumlah_kamar' => 'required|numeric|digits:2',
+            'jumlah_kamar' => 'required|numeric',
             'fasilitas' => 'required|string',
             'deskripsi_kamar' => 'required|string',
             'harga_kamar' => 'required|numeric',
