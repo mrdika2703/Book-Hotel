@@ -117,8 +117,8 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .btn-main:hover {
-  background: #a33030;
-  border-color: #a33030;
+  background: #004e5a;
+  border-color: #004e5a;
   color: #fff;
 }
 
@@ -129,21 +129,21 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .btn-main-2:hover {
-  background: #a33030;
+  background: #004e5a;
   color: #fff;
-  border-color: #a33030;
+  border-color: #004e5a;
 }
 
 .btn-solid-border {
-  border: 2px solid #a33030;
+  border: 2px solid #004e5a;
   background: transparent;
-  color: #a33030;
+  color: #004e5a;
 }
 
 .btn-solid-border:hover {
-  border: 2px solid #a33030;
+  border: 2px solid #004e5a;
   color: #fff;
-  background: #a33030;
+  background: #004e5a;
 }
 
 .btn-solid-border:hover.btn-icon i {
@@ -409,7 +409,7 @@ a:focus {
   visibility: hidden;
   transition: all 0.3s ease-out 0s;
   border: 0px;
-  border-top: 5px solid #cf7e7e;
+  border-top: 5px solid #004e5a;
   border-radius: 0px;
 }
 
@@ -1057,7 +1057,7 @@ a:focus {
 }
 
 .nav-links .page-numbers:hover {
-  background: #a33030;
+  background: #004e5a;
   color: #fff;
 }
 
@@ -1502,7 +1502,7 @@ a.btnVisit {
 }
 
 a.btnVisit:hover {
-  color: #cb7575 !important;
+  color: #a8c5ca !important;
   transition: all 0.8s
 }
 

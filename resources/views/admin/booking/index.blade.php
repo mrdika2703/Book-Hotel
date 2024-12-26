@@ -5,31 +5,31 @@
 
 
     @if (session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 2000
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
             });
-        });
-    </script>
-@endif
+        </script>
+    @endif
 
-@if (session('error'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "{{ session('error') }}",
-                showConfirmButton: true,
+    @if (session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "{{ session('error') }}",
+                    showConfirmButton: true,
+                });
             });
-        });
-    </script>
-@endif
+        </script>
+    @endif
 
 
 
@@ -64,17 +64,18 @@
                                             <td>{{ $book->kamar->jenis_kamar }}</td>
                                             <td>{{ $book->tanggal_checkin }}</td>
                                             <td>{{ $book->tanggal_checkout }}</td>
-                                            <td> 
-                                                @if ($book->status == "booking")
+                                            <td>
+                                                @if ($book->status == 'booking')
                                                     <span class="badge bg-warning">Booking
-                                                @elseif ($book->status == "checkin")
-                                                    <span class="badge bg-info">Checked-in
-                                                @elseif ($book->status == "checkout")
-                                                    <span class="badge bg-success">Checked-out
-                                                @elseif ($book->status == "cancel")
-                                                    <span class="badge bg-danger">Cancelled
+                                                    @elseif ($book->status == 'checkin')
+                                                        <span class="badge bg-info">Checked-in
+                                                        @elseif ($book->status == 'checkout')
+                                                            <span class="badge bg-success">Checked-out
+                                                            @elseif ($book->status == 'cancel')
+                                                                <span class="badge bg-danger">Cancelled
                                                 @endif
-                                            </span></td>
+                                                </span>
+                                            </td>
 
                                             <td class="btn-group d-flex justify-content-center">
                                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal"
@@ -139,7 +140,8 @@
 
                                         <!-- Modal Edit -->
                                         <!-- /.modal -->
-                                        <div class="modal fade" id="modal-edit{{ $book->id }}" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+                                        <div class="modal fade" id="modal-edit{{ $book->id }}" tabindex="-1"
+                                            aria-labelledby="modalEditLabel{{ $book->id }}" aria-hidden="true">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content shadow-lg">
                                                     <!-- Modal Header -->
@@ -152,31 +154,35 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                        
+
                                                     <!-- Modal Body -->
                                                     <div class="modal-body text-center">
                                                         <p class="mb-3">Pilih status tamu :</p>
                                                         <div class="d-flex flex-column gap-2">
                                                             <!-- Check-in Form -->
-                                                            <form action="{{ route('booking.checkin', $book->id) }}" method="POST">
+                                                            <form action="{{ route('booking.checkin', $book->id) }}"
+                                                                method="POST">
                                                                 @csrf
                                                                 @method('PATCH')
                                                                 <button type="submit" class="btn btn-info w-100">
                                                                     <i class="fa-solid fa-door-open me-2"></i>Check-in
                                                                 </button>
                                                             </form>
-                                        
+
                                                             <!-- Check-out Form -->
-                                                            <form action="{{ route('booking.checkout', $book->id) }}" method="POST">
+                                                            <form action="{{ route('booking.checkout', $book->id) }}"
+                                                                method="POST">
                                                                 @csrf
                                                                 @method('PATCH')
                                                                 <button type="submit" class="btn btn-success w-100">
-                                                                    <i class="fa-solid fa-door-closed me-2"></i>Check-out
+                                                                    <i
+                                                                        class="fa-solid fa-door-closed me-2"></i>Check-out
                                                                 </button>
                                                             </form>
-                                        
+
                                                             <!-- Cancel Form -->
-                                                            <form action="{{ route('booking.cancel', $book->id) }}" method="POST">
+                                                            <form action="{{ route('booking.cancel', $book->id) }}"
+                                                                method="POST">
                                                                 @csrf
                                                                 @method('PATCH')
                                                                 <button type="submit" class="btn btn-danger w-100">
@@ -188,8 +194,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        
                                     @endforeach
                                 </tbody>
                             </table>

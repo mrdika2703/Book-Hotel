@@ -92,17 +92,17 @@
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            @if (session('success'))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil',
-                    text: '{{ session('success') }}',
-                    timer: 2000,
-                    showConfirmButton: false
-                });
-            @endif
-        });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     @if (session('success'))
+        //         Swal.fire({
+        //             icon: 'success',
+        //             title: 'Berhasil',
+        //             text: '{{ session('success') }}',
+        //             timer: 2000,
+        //             showConfirmButton: false
+        //         });
+        //     @endif
+        // });
 
         function confirmDelete(id) {
             Swal.fire({

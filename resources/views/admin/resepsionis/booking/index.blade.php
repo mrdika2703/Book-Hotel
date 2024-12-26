@@ -82,7 +82,7 @@
                                                     <i class="fa-solid fa-eye"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-warning btn-sm"
-                                                    data-toggle="modal" data-target="#modal-edit">
+                                                    data-toggle="modal" data-target="#modal-edit{{ $book->id }}">
                                                     <i class="fa-solid fa-edit"></i>
                                                 </button>
                                             </td>
@@ -139,7 +139,7 @@
 
                                         <!-- Modal Edit -->
                                         <!-- /.modal -->
-                                        <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+                                        <div class="modal fade" id="modal-edit{{ $book->id }}" tabindex="-1" aria-labelledby="modalEditLabel{{ $book->id }}" aria-hidden="true">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content shadow-lg">
                                                     <!-- Modal Header -->

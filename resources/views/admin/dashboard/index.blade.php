@@ -131,7 +131,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($booking->sortByDesc('tanggal_book') as $book)
+                                    @foreach ($booking->sortByDesc('tanggal_book')->take(10) as $book)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $book->people->nama_lengkap }}</td>
@@ -213,73 +213,6 @@
                     options: donutOptions
                 });
             });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Area Chart
-            // var areaChartCanvas = document.getElementById('areaChart').getContext('2d');
-            // var areaChartData = {
-            //     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            //     datasets: [{
-            //             label: 'Digital Goods',
-            //             backgroundColor: 'rgba(60,141,188,0.9)',
-            //             borderColor: 'rgba(60,141,188,0.8)',
-            //             data: [28, 48, 40, 19, 86, 27, 90]
-            //         },
-            //         {
-            //             label: 'Electronics',
-            //             backgroundColor: 'rgba(210, 214, 222, 1)',
-            //             borderColor: 'rgba(210, 214, 222, 1)',
-            //             data: [65, 59, 80, 81, 56, 55, 40]
-            //         }
-            //     ]
-            // };
-            // var areaChartOptions = {
-            //     maintainAspectRatio: false,
-            //     responsive: true,
-            //     plugins: {
-            //         legend: {
-            //             display: false
-            //         }
-            //     },
-            //     scales: {
-            //         x: {
-            //             grid: {
-            //                 display: false
-            //             }
-            //         },
-            //         y: {
-            //             grid: {
-            //                 display: false
-            //             }
-            //         }
-            //     }
-            // };
-            // new Chart(areaChartCanvas, {
-            //     type: 'line',
-            //     data: areaChartData,
-            //     options: areaChartOptions
-            // });
-
-            // // Donut Chart
-            // var donutChartCanvas = document.getElementById('donutChart').getContext('2d');
-            // var donutData = {
-            //     labels: ['Chrome', 'IE', 'FireFox', 'Safari', 'Opera', 'Navigator'],
-            //     datasets: [{
-            //         data: [700, 500, 400, 600, 300, 100],
-            //         backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-            //     }]
-            // };
-            // var donutOptions = {
-            //     maintainAspectRatio: false,
-            //     responsive: true,
-            // };
-            // new Chart(donutChartCanvas, {
-            //     type: 'doughnut',
-            //     data: donutData,
-            //     options: donutOptions
-            // });
-        });
     </script>
 
 </x-admin.layout>

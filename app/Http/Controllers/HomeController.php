@@ -8,29 +8,34 @@ use App\Models\Booking;
 use App\Models\FasilitasHotel;
 use App\Models\Kamar;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
-use Carbon\Carbon;
 
 
-class ResDashboard extends Controller
+class HomeController extends Controller
 {
-    public function dashboard(Request $request)
+    public function index(Request $request)
     {
-        $title = $request->query('title', 'Dashboard');
         $authh = Auth::user();
-        $user = User::all();
         $kamar = Kamar::all();
-        $booking = Booking::all();
         $fasilitas = FasilitasHotel::all();
 
         // Kirim data ke view
-        return view('admin.resepsionis.dashboard.index', [
-            'title' => $title,
+        return view('home.index', [
             'authh' => $authh,
-            'user' => $user,
             'kamar' => $kamar,
-            'booking' => $booking,
+            'fasilitas' => $fasilitas
+        ]);
+    }
+
+    public function about(Request $request)
+    {
+        $authh = Auth::user();
+        $kamar = Kamar::all();
+        $fasilitas = FasilitasHotel::all();
+
+        // Kirim data ke view
+        return view('home.about.index', [
+            'authh' => $authh,
+            'kamar' => $kamar,
             'fasilitas' => $fasilitas
         ]);
     }

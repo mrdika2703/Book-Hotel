@@ -20,6 +20,7 @@ class Booking extends Model
         'pembayaran',
         'total_harga',
         'status',
+        'id_user_accept',
         'jumlah_kamar',
     ];
 
@@ -28,6 +29,12 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class, 'id_user_tamu');
     }
+
+    public function accuser()
+    {
+        return $this->belongsTo(User::class, 'id_user_accept');
+    }
+
 
     // Relasi ke model People
     public function people()

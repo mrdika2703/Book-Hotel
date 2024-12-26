@@ -14,49 +14,60 @@
             aria-label="Slide 6"></button>
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="images/home/TempatSantaiPantai.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
+        @if (!empty($fasilitas))
+            @forelse ($fasilitas as $fasilitas)
+            <div class="carousel-item active">
+                <img src="{{ asset('storage/' . $fasilitas->foto1) }}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ $fasilitas->nama_fasilitas }}</h5>
+                    <p>{{ $fasilitas->deskripsi_fasilitas }}</p>
+                </div>
             </div>
-        </div>
-        <div class="carousel-item">
-            <img src="images/home/KolamRenang2.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="images/home/RestaurantDalamRuang.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="images/home/RestaurantMewah.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="images/home/SarapanGratis.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
-        </div>
+            @empty
+                <div class="carousel-item active">
+                    <img src="images/home/TempatSantaiPantai.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Tempat Santai Pantai</h5>
+                        <p>Nyaman dan saksikan sunrise yang memukau</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/home/KolamRenang2.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Kolam Renang</h5>
+                        <p>Kolam air tawar yang mewah sampai kedalaman 5 meter</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/home/RestaurantDalamRuang.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Restaurant Indoor</h5>
+                        <p>Nyaman dan hangat dengan menu yang menjakan lidahmu</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/home/RestaurantMewah.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Restaurant Outdoor</h5>
+                        <p>Berbagai menu istimewa hadir untuk anda</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/home/SarapanGratis.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Sarapan Gratis</h5>
+                        <p>Dengan menu yang dibawa oleh chef handal kami</p>
+                    </div>
+                </div>
+            @endforelse
+        @endif
+
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ResBooking;
 use App\Http\Controllers\ResDashboard;
@@ -38,9 +40,8 @@ Route::post('/logoutadm', [AuthController::class, 'logoutadm'])->name('logoutadm
 
 // Rute untuk user yang sudah login
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', function () {
-        return view('home.index');
-    })->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
 
     // Route untuk PeopleController
     Route::get('/home/add', [PeopleController::class, 'index'])->name('people.index');

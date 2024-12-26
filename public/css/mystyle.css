@@ -115,7 +115,7 @@ main > div > div > h5 {
     width: 155px;
 }
 
-/* Awalnya sembunyikan overlay dan teks */
+/* Sembunyikan overlay secara default */
 .fasilitas-overlay {
     position: absolute;
     top: 0;
@@ -126,18 +126,17 @@ main > div > div > h5 {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
+    opacity: 0; /* Sembunyikan */
     transition: opacity 0.3s ease;
     border-radius: 0.25rem; /* Sama dengan border-radius gambar */
+    pointer-events: none; /* Hindari interaksi */
 }
 
-.fasilitas-overlay .fasilitas-text {
-    font-family: "Exo", sans-serif;
-    color: #fff; /* Warna teks */
-    font-size: 1em;
-    /* text-align: center; */
-    padding: 25px;
+.doctor-img:hover .fasilitas-overlay {
+    opacity: 1; /* Tampilkan overlay saat hover */
+    pointer-events: auto; /* Aktifkan interaksi */
 }
+
 
 .fasilitas-text > li {
     list-style-type: bullet;

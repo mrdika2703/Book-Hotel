@@ -31,9 +31,12 @@ class AdminBooking extends Controller
 
     public function checkin(Request $request, Booking $booking)
     {
+        $authh = Auth::user();
+
         $booking->update([
             'status' => 'checkin',
             'tanggal_checkin' => Carbon::now(),
+            'id_user_accept' => $authh->id,
         ]);
 
         return redirect()->route('booking')->with('success', 'Booking berhasil di-Check-in.');
@@ -41,9 +44,12 @@ class AdminBooking extends Controller
 
     public function checkout(Request $request, Booking $booking)
     {
+        $authh = Auth::user();
+
         $booking->update([
             'status' => 'checkout',
             'tanggal_checkout' => Carbon::now(),
+            'id_user_accept' => $authh->id,
         ]);
 
         // Tambahkan jumlah kamar
@@ -57,6 +63,7 @@ class AdminBooking extends Controller
 
     public function cancel(Request $request, Booking $booking)
     {
+        $authh = Auth::user();
         $booking->update([
             'status' => 'cancel',
         ]);
@@ -65,6 +72,7 @@ class AdminBooking extends Controller
         $room = $booking->kamar; // Relasi dengan model Kamar
         $room->update([
             'jumlah_kamar' => $room->jumlah_kamar + 1,
+            'id_user_accept' => $authh->id,
         ]);
 
         return redirect()->route('booking')->with('success', 'Booking berhasil dibatalkan. Jumlah kamar telah diperbarui.');
