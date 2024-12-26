@@ -101,8 +101,7 @@
                     <div class="section-title text-center">
                         <h2 class="mb-4">Fasilitas Hotel</h2>
                         <div class="divider mx-auto my-4"></div>
-                        <p>Hari hari budaya yang harus diikuti oleh masyarakat indonesai untuk melestarikan budaya
-                            indonesia supaya tidak berhenti di kita</p>
+                        <p>Dengan fasilitas premium yang akan memanjakan liburan maupun istirahat anda di hotel kami.</p>
                     </div>
                 </div>
             </div>
