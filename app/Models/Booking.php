@@ -23,6 +23,14 @@ class Booking extends Model
         'id_user_accept',
         'jumlah_kamar',
     ];
+    
+    // Booking model
+    protected $casts = [
+        'tanggal_book' => 'datetime',
+        'tanggal_checkin' => 'datetime',
+        'tanggal_checkout' => 'datetime',
+    ];
+
 
     // Relasi ke model User
     public function user()
