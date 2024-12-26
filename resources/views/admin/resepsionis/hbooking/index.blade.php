@@ -84,58 +84,99 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                        <!-- Modal View -->
-                                        <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1"
-                                            aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content shadow-lg">
-                                                    <div class="modal-header bg-primary text-white">
-                                                        <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
-                                                            <i class="bi bi-person-lines-fill me-2"></i>Detail Data
-                                                            Booking
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <!-- Data Pribadi -->
-                                                            <div class="col-md-6">
-                                                                <ul class="list-group">
-                                                                    <li class="list-group-item">
-                                                                        <strong>Nama Lengkap:</strong>
-                                                                        <span>{{ $book->people->nama_lengkap }}</span>
-                                                                    </li>
-                                                                    <li class="list-group-item">
-                                                                        <strong>Jenis Kamar:</strong>
-                                                                        <span>{{ $book->kamar->jenis_kamar }}</span>
-                                                                    </li>
-                                                                    <li class="list-group-item">
-                                                                        <strong>Tanggal Check-in:</strong>
-                                                                        <span>{{ $book->tanggal_checkin }}</span>
-                                                                    </li>
-                                                                    <li class="list-group-item">
-                                                                        <strong>Tanggal Check-out:</strong>
-                                                                        <span>{{ $book->tanggal_checkout }}</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">
-                                                            <i class="bi bi-x-circle"></i> Tutup
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            @foreach ($booking as $book)
+                                <!-- Modal View -->
+                                <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1"
+                                    aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content shadow-lg">
+                                            <div class="modal-header bg-primary text-white">
+                                                <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
+                                                    <i class="bi bi-person-lines-fill me-2"></i>Detail Data
+                                                    Booking
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <table class="table table-borderless">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>ID Booking</th>
+                                                                    <td>#{{ $book->id }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>User</th>
+                                                                    <td>{{ $book->user->nama_lengkap }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Nama Tamu</th>
+                                                                    <td>{{ $book->people->nama_lengkap }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Alamat tamu</th>
+                                                                    <td>{{ $book->people->alamat_lengkap }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Jenis Kamar</th>
+                                                                    <td>{{ $book->kamar->jenis_kamar }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tanggal Booking</th>
+                                                                    <td>{{ $book->tanggal_book }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tanggal Check-in</th>
+                                                                    <td>{{ $book->tanggal_checkin }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tanggal Check-out</th>
+                                                                    <td>{{ $book->tanggal_checkout }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Status</th>
+                                                                    <td> <span class="badge bg-success"> {{ $book->status }} </span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Pembayaran</th>
+                                                                    <td>{{ $book->pembayaran }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>User Accept</th>
+                                                                    <td>
+                                                                        @if ($book->accuser)
+                                                                            {{ $book->accuser->nama_lengkap }} (
+                                                                            {{ $book->accuser->role }} )
+                                                                        @else
+                                                                            Belum
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="bi bi-x-circle"></i> Tutup
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
                         </div>
                         <!-- /.card-body -->
                     </div>

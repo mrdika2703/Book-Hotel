@@ -88,55 +88,6 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                        <!-- Modal View -->
-                                        <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1"
-                                            aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content shadow-lg">
-                                                    <div class="modal-header bg-primary text-white">
-                                                        <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
-                                                            <i class="bi bi-person-lines-fill me-2"></i>Detail Data
-                                                            Booking
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <!-- Data Pribadi -->
-                                                            <div class="col-md-6">
-                                                                <ul class="list-group">
-                                                                    <li class="list-group-item">
-                                                                        <strong>Nama Lengkap:</strong>
-                                                                        <span>{{ $book->people->nama_lengkap }}</span>
-                                                                    </li>
-                                                                    <li class="list-group-item">
-                                                                        <strong>Jenis Kamar:</strong>
-                                                                        <span>{{ $book->kamar->jenis_kamar }}</span>
-                                                                    </li>
-                                                                    <li class="list-group-item">
-                                                                        <strong>Tanggal Check-in:</strong>
-                                                                        <span>{{ $book->tanggal_checkin }}</span>
-                                                                    </li>
-                                                                    <li class="list-group-item">
-                                                                        <strong>Tanggal Check-out:</strong>
-                                                                        <span>{{ $book->tanggal_checkout }}</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">
-                                                            <i class="bi bi-x-circle"></i> Tutup
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <!-- Modal Edit -->
                                         <!-- /.modal -->
@@ -159,36 +110,45 @@
                                                     <div class="modal-body text-center">
                                                         <p class="mb-3">Pilih status tamu :</p>
                                                         <div class="d-flex flex-column gap-2">
-                                                            <!-- Check-in Form -->
-                                                            <form action="{{ route('booking.checkin', $book->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('PATCH')
-                                                                <button type="submit" class="btn btn-info w-100">
-                                                                    <i class="fa-solid fa-door-open me-2"></i>Check-in
-                                                                </button>
-                                                            </form>
+                                                            @if ($book->status == 'booking')
+                                                                <!-- Check-in Form -->
+                                                                <form
+                                                                    action="{{ route('booking.checkin', $book->id) }}"
+                                                                    method="POST" hidden>
+                                                                    @csrf
+                                                                    @method('PATCH')
+                                                                    <button type="submit" class="btn btn-info w-100">
+                                                                        <i
+                                                                            class="fa-solid fa-door-open me-2"></i>Check-in
+                                                                    </button>
+                                                                </form>
 
-                                                            <!-- Check-out Form -->
-                                                            <form action="{{ route('booking.checkout', $book->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('PATCH')
-                                                                <button type="submit" class="btn btn-success w-100">
-                                                                    <i
-                                                                        class="fa-solid fa-door-closed me-2"></i>Check-out
-                                                                </button>
-                                                            </form>
+                                                                <!-- Cancel Form -->
+                                                                <form action="{{ route('booking.cancel', $book->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('PATCH')
+                                                                    <button type="submit" class="btn btn-danger w-100">
+                                                                        <i class="fa-solid fa-ban me-2"></i>Cancel
+                                                                    </button>
+                                                                </form>
+                                                            @endif
 
-                                                            <!-- Cancel Form -->
-                                                            <form action="{{ route('booking.cancel', $book->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('PATCH')
-                                                                <button type="submit" class="btn btn-danger w-100">
-                                                                    <i class="fa-solid fa-ban me-2"></i>Cancel
-                                                                </button>
-                                                            </form>
+                                                            @if ($book->status == 'checkin')
+                                                                <!-- Check-out Form -->
+                                                                <form
+                                                                    action="{{ route('booking.checkout', $book->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('PATCH')
+                                                                    <button type="submit"
+                                                                        class="btn btn-success w-100">
+                                                                        <i
+                                                                            class="fa-solid fa-door-closed me-2"></i>Check-out
+                                                                    </button>
+                                                                </form>
+                                                            @endif
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,6 +157,102 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            @foreach ($booking as $book)
+                                <!-- Modal View -->
+                                <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1"
+                                    aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content shadow-lg">
+                                            <div class="modal-header bg-primary text-white">
+                                                <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
+                                                    <i class="bi bi-person-lines-fill me-2"></i>Detail Data
+                                                    Booking
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <table class="table table-borderless">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>ID Booking</th>
+                                                                    <td>#{{ $book->id }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>User</th>
+                                                                    <td>{{ $book->user->nama_lengkap }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Nama Tamu</th>
+                                                                    <td>{{ $book->people->nama_lengkap }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Alamat tamu</th>
+                                                                    <td>{{ $book->people->alamat_lengkap }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Jenis Kamar</th>
+                                                                    <td>{{ $book->kamar->jenis_kamar }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tanggal Booking</th>
+                                                                    <td>{{ $book->tanggal_book }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tanggal Check-in</th>
+                                                                    <td>{{ $book->tanggal_checkin }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tanggal Check-out</th>
+                                                                    <td>{{ $book->tanggal_checkout }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Status</th>
+                                                                    <td> <span
+                                                                            class="badge 
+                                                                        @if ($book->status == 'booking') bg-warning
+                                                                        @elseif ($book->status == 'checkin') bg-info
+                                                                        @elseif ($book->status == 'chekout') bg-success
+                                                                        @elseif ($book->status == 'cancel') bg-danger @endif
+                                                                        ">{{ $book->status }}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Pembayaran</th>
+                                                                    <td>{{ $book->pembayaran }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>User Accept</th>
+                                                                    <td>
+                                                                        @if ($book->accuser)
+                                                                            {{ $book->accuser->nama_lengkap }} (
+                                                                            {{ $book->accuser->role }} )
+                                                                        @else
+                                                                            Belum
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="bi bi-x-circle"></i> Tutup
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
                         </div>
                         <!-- /.card-body -->
                     </div>

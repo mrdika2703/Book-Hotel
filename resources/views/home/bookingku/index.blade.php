@@ -29,7 +29,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Kamar</th>
-                                <th>Nama</th>
+                                <th>Nama Tamu</th>
                                 <th>Checkin</th>
                                 <th>Checkout</th>
                                 <th>Status</th>
@@ -44,7 +44,13 @@
                                     <td>{{ $book->people->nama_lengkap }}</td>
                                     <td>{{ $book->tanggal_checkin }}</td>
                                     <td>{{ $book->tanggal_checkout }}</td>
-                                    <td>{{ $book->status }}</td>
+                                    <td class="text-center"><span class="badge 
+                                        @if ($book->status == "booking") bg-warning
+                                        @elseif ($book->status == "checkin") bg-info
+                                        @elseif ($book->status == "chekout") bg-success
+                                        @elseif ($book->status == "cancel") bg-danger
+                                        @endif
+                                        ">{{ $book->status }}</span></td>
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <button class="btn btn-success btn-sm" data-bs-toggle="modal"
@@ -59,11 +65,11 @@
                                         </div>
                                     </td>
                                 </tr>
-
-                                <!-- Tombol Trigger Modal -->
+                                @endforeach
                         </tbody>
                     </table>
 
+                    @foreach ($booking as $book)
                     <!-- Modal -->
                     <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1"
                         aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
@@ -82,43 +88,49 @@
                                             <table class="table table-borderless">
                                                 <tbody>
                                                     <tr>
-                                                        <th scope="row">User</th>
+                                                        <th>ID Booking</th>
+                                                        <td>#{{ $book->id }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>User</th>
                                                         <td>{{ $book->user->nama_lengkap }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Nama Tamu</th>
+                                                        <th>Nama Tamu</th>
                                                         <td>{{ $book->people->nama_lengkap }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Alamat tamu</th>
+                                                        <th>Alamat tamu</th>
                                                         <td>{{ $book->people->alamat_lengkap }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Jenis Kamar</th>
+                                                        <th>Jenis Kamar</th>
                                                         <td>{{ $book->kamar->jenis_kamar }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Tanggal Booking</th>
+                                                        <th>Tanggal Booking</th>
                                                         <td>{{ $book->tanggal_book }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Tanggal Check-in</th>
+                                                        <th>Tanggal Check-in</th>
                                                         <td>{{ $book->tanggal_checkin }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Tanggal Check-out</th>
+                                                        <th>Tanggal Check-out</th>
                                                         <td>{{ $book->tanggal_checkout }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Tanggal Check-out</th>
-                                                        <td>{{ $book->tanggal_checkout }}</td>
+                                                        <th>Status</th>
+                                                        <td class="badge 
+                                                        @if ($book->status == "booking") bg-warning
+                                                        @elseif ($book->status == "checkin") bg-info
+                                                        @elseif ($book->status == "chekout") bg-success
+                                                        @elseif ($book->status == "cancel") bg-danger
+                                                        @endif
+                                                        ">{{ $book->status }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Status</th>
-                                                        <td>{{ $book->status }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Pembayaran</th>
+                                                        <th>Pembayaran</th>
                                                         <td>{{ $book->pembayaran }}</td>
                                                     </tr>
                                                 </tbody>
@@ -135,7 +147,6 @@
                             </div>
                         </div>
                     </div>
-
                     @endforeach
                 </div>
             </div>

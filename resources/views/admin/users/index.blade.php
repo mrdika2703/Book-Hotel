@@ -12,7 +12,7 @@
                         <div class="card-header">
                             <div class="row justify-content-between">
                                 <div class="col-4">
-                                    <h3 class="card-title">Data Kamar</h3>  
+                                    <h3 class="card-title">Data Users</h3>
                                 </div>
                                 <div class="col-4 d-flex justify-content-end">
                                     <button class="btn btn-primary" data-bs-toggle="modal"
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -39,36 +39,48 @@
                                     @foreach ($users as $users)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $users->nama_lengkap}}</td>
-                                            <td>{{ $users->username}}</td>
-                                            <td>{{ $users->role}}</td>
-                                            <td>{{ $users->nama_panggilan}}</td>
-                                            <td>{{ $users->jenis_kelamin}}</td>
+                                            <td>{{ $users->nama_lengkap }}</td>
+                                            <td>{{ $users->username }}</td>
+                                            <td><span class="badge 
+                                                @if ($users->role == 'tamu') bg-warning
+                                                @elseif ($users->role == 'resepsionis') bg-info
+                                                @elseif ($users->role == 'admin') bg-primary
+                                                @endif
+                                                ">{{ $users->role }}
+                                                </span></td>
+                                            <td>{{ $users->nama_panggilan }}</td>
+                                            <td>
+                                                @if ($users->jenis_kelamin == 'L')
+                                                    Laki-Laki
+                                                @elseif ($users->jenis_kelamin == 'P')
+                                                    Perempuan
+                                                @endif
+                                            </td>
 
                                             <td class="btn-group d-flex justify-content-center">
                                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                     data-bs-target="#viewModal{{ $users->id }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </button>
-                                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $users->id }}">
+                                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#editModal{{ $users->id }}">
                                                     <i class="fa-solid fa-edit"></i>
                                                 </button>
                                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                        onclick="confirmDelete({{ $users->id }})">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                        <form id="delete-form-{{ $users->id }}"
-                                                            action="{{ route('users.destroy', $users->id) }}" method="POST"
-                                                            style="display: none;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                        </form>
-                                                    </button>
+                                                    onclick="confirmDelete({{ $users->id }})">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                    <form id="delete-form-{{ $users->id }}"
+                                                        action="{{ route('users.destroy', $users->id) }}"
+                                                        method="POST" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                </button>
                                             </td>
                                         </tr>
 
                                         @include('admin.users.view', ['users' => $users])
                                         @include('admin.users.edit', ['users' => $users])
-
                                     @endforeach
 
                                     @include('admin.users.add', ['users' => $users])

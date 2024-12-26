@@ -12,7 +12,7 @@
                         <div class="card-header">
                             <div class="row justify-content-between">
                                 <div class="col-4">
-                                    <h3 class="card-title">Data Kamar</h3>  
+                                    <h3 class="card-title">Data Fasilitas</h3>  
                                 </div>
                                 <div class="col-4 d-flex justify-content-end">
                                     <button class="btn btn-primary" data-bs-toggle="modal"
