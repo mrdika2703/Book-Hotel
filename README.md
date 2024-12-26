@@ -1,7 +1,3 @@
-![Home](public/images/screenshoot/SSHome.png)
-![Login](public/images/screenshoot/SSLogin.png)
-![admin](public/images/screenshoot/SSAdmin.png)
-
 # **Booking Hotel**
 
 Web ini yang berjudul Book Hotel masih dalam proses pengembangan, web ini ditujukan untuk mempermudah pemesanan kamar hotel dengan online dengan dilengkapi jenis kamar, jumlah kamar dan fasilitas hotel. Tidak hanya mempermudah tamu tapi admin dan resepsionis juga dipermudah karena bisa mengkonfirmasi data tamu dengan cepat dan akurat.
@@ -92,3 +88,15 @@ CRUD dari data semua user.
 9. Akses url
 `/` : Login tamu
 `/admin` :  Login resepsionis dan admin
+
+
+## **Screenshot isi web**
+
+1. Login
+![Login](public/images/screenshoot/SSLogin.png)
+
+2. Home
+![Home](public/images/screenshoot/SSHome.png)
+
+3. Admin
+![admin](public/images/screenshoot/SSAdmin.png)
