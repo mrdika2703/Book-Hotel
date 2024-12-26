@@ -47,7 +47,7 @@
                                     <td class="text-center"><span class="badge 
                                         @if ($book->status == "booking") bg-warning
                                         @elseif ($book->status == "checkin") bg-info
-                                        @elseif ($book->status == "chekout") bg-success
+                                        @elseif ($book->status == "checkout") bg-success
                                         @elseif ($book->status == "cancel") bg-danger
                                         @endif
                                         ">{{ $book->status }}</span></td>
@@ -124,7 +124,7 @@
                                                         <td class="badge 
                                                         @if ($book->status == "booking") bg-warning
                                                         @elseif ($book->status == "checkin") bg-info
-                                                        @elseif ($book->status == "chekout") bg-success
+                                                        @elseif ($book->status == "checkout") bg-success
                                                         @elseif ($book->status == "cancel") bg-danger
                                                         @endif
                                                         ">{{ $book->status }}</td>
