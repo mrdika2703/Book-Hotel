@@ -48,61 +48,95 @@
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <button class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#viewModal{{ $book->id }}">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-warning btn-sm" onclick="generatePdfUrl({{ $book->id }})">
-                                            <i class="fa-solid fa-print"></i>
-                                        </button>
-                                        
+                                                data-bs-target="#viewModal{{ $book->id }}">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-warning btn-sm"
+                                                onclick="generatePdfUrl({{ $book->id }})">
+                                                <i class="fa-solid fa-print"></i>
+                                            </button>
+
                                         </div>
                                     </td>
                                 </tr>
 
-                                <!-- Modal View -->
-                                <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1" aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content shadow-lg">
-                                            <div class="modal-header my-bg text-white">
-                                                <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
-                                                    <i class="bi bi-person-lines-fill me-2"></i>Detail Data Booking
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
+                                <!-- Tombol Trigger Modal -->
+                        </tbody>
+                    </table>
 
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <!-- Data Pribadi -->
-                                                    <div class="col-md-6">
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item">
-                                                                <strong>Nama Lengkap:</strong> <span>{{ $book->people->nama_lengkap }}</span>
-                                                            </li>
-                                                            <li class="list-group-item">
-                                                                <strong>Jenis Kamar:</strong> <span>{{ $book->kamar->jenis_kamar }}</span>
-                                                            </li>
-                                                            <li class="list-group-item">
-                                                                <strong>Tanggal Check-in:</strong> <span>{{ $book->tanggal_checkin }}</span>
-                                                            </li>
-                                                            <li class="list-group-item">
-                                                                <strong>Tanggal Check-out:</strong> <span>{{ $book->tanggal_checkout }}</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    <i class="bi bi-x-circle"></i> Tutup
-                                                </button>
-                                            </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="viewModal{{ $book->id }}" tabindex="-1"
+                        aria-labelledby="viewModalLabel{{ $book->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content shadow-lg">
+                                <div class="modal-header my-bg text-white">
+                                    <h5 class="modal-title" id="viewModalLabel{{ $book->id }}">
+                                        <i class="bi bi-person-lines-fill me-2"></i>Detail Data Booking
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <table class="table table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">User</th>
+                                                        <td>{{ $book->user->nama_lengkap }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Nama Tamu</th>
+                                                        <td>{{ $book->people->nama_lengkap }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Alamat tamu</th>
+                                                        <td>{{ $book->people->alamat_lengkap }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Jenis Kamar</th>
+                                                        <td>{{ $book->kamar->jenis_kamar }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Tanggal Booking</th>
+                                                        <td>{{ $book->tanggal_book }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Tanggal Check-in</th>
+                                                        <td>{{ $book->tanggal_checkin }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Tanggal Check-out</th>
+                                                        <td>{{ $book->tanggal_checkout }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Tanggal Check-out</th>
+                                                        <td>{{ $book->tanggal_checkout }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Status</th>
+                                                        <td>{{ $book->status }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Pembayaran</th>
+                                                        <td>{{ $book->pembayaran }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">
+                                        <i class="bi bi-x-circle"></i> Tutup
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -112,10 +146,10 @@
         function generatePdfUrl(bookingId) {
             // Template URL dari route
             let urlTemplate = "{{ route('booking.pdf', ':id') }}";
-    
+
             // Ganti placeholder :id dengan bookingId
             let url = urlTemplate.replace(':id', bookingId);
-    
+
             // Redirect ke URL PDF
             window.open(url, '_blank'); // Membuka di tab baru
         }

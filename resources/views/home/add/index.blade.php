@@ -32,9 +32,9 @@
     <div class="container my-5 main-content">
         <!-- Judul dan Tombol -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="text-cyan fw-bold"><i class="fa-solid fa-bed"></i> Data Orang</h3>
-            <button class="btn btn-primary btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#addModal">
-                <i class="bi bi-plus-circle me-2"></i>Tambah Data
+            <h3 class="text-cyan fw-bold"><i class="fa-solid fa-users"></i> Data Orang</h3>
+            <button class="btn mybutton btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#addModal">
+                Tambah Data
             </button>
         </div>
 
