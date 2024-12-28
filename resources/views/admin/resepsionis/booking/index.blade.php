@@ -113,7 +113,7 @@
                                                             @if ($book->status == 'booking')
                                                                 <!-- Check-in Form -->
                                                                 <form
-                                                                    action="{{ route('booking.checkin', $book->id) }}"
+                                                                    action="{{ route('rbooking.checkin', $book->id) }}"
                                                                     method="POST" hidden>
                                                                     @csrf
                                                                     @method('PATCH')
@@ -124,7 +124,7 @@
                                                                 </form>
 
                                                                 <!-- Cancel Form -->
-                                                                <form action="{{ route('booking.cancel', $book->id) }}"
+                                                                <form action="{{ route('rbooking.cancel', $book->id) }}"
                                                                     method="POST">
                                                                     @csrf
                                                                     @method('PATCH')
@@ -137,7 +137,7 @@
                                                             @if ($book->status == 'checkin')
                                                                 <!-- Check-out Form -->
                                                                 <form
-                                                                    action="{{ route('booking.checkout', $book->id) }}"
+                                                                    action="{{ route('rbooking.checkout', $book->id) }}"
                                                                     method="POST">
                                                                     @csrf
                                                                     @method('PATCH')
