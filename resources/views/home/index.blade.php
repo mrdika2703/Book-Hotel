@@ -119,7 +119,7 @@
                                     </div>
                                 </div>
                                 <div class="content mt-3 text-center">
-                                    <h4 class="mb-0"><a href="/tokoh/detail"
+                                    <h4 class="mb-0"><a href="#"
                                             style="color: #004e5a">{{ $hotel->nama_fasilitas }}</a>
                                     </h4>
                                     <p>{{ $hotel->deskripsi_fasilitas }}</p>
@@ -139,7 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="content mt-3 text-center">
-                                    <h4 class="mb-0"><a href="/tokoh/detail" style="color: #004e5a">Sarapan
+                                    <h4 class="mb-0"><a href="#" style="color: #004e5a">Sarapan
                                             Gratis</a>
                                     </h4>
                                     <p>Dengan menu yang dibawa oleh chef handal kami</p>
@@ -157,7 +157,7 @@
                                     </div>
                                 </div>
                                 <div class="content mt-3 text-center">
-                                    <h4 class="mb-0"><a href="/tokoh/detail" style="color: #004e5a">Sarapan
+                                    <h4 class="mb-0"><a href="#" style="color: #004e5a">Sarapan
                                             Gratis</a>
                                     </h4>
                                     <p>Dengan menu yang dibawa oleh chef handal kami</p>
@@ -175,7 +175,7 @@
                                     </div>
                                 </div>
                                 <div class="content mt-3 text-center">
-                                    <h4 class="mb-0"><a href="/tokoh/detail" style="color: #004e5a">Sarapan
+                                    <h4 class="mb-0"><a href="#" style="color: #004e5a">Sarapan
                                             Gratis</a>
                                     </h4>
                                     <p>Dengan menu yang dibawa oleh chef handal kami</p>
@@ -193,7 +193,7 @@
                                     </div>
                                 </div>
                                 <div class="content mt-3 text-center">
-                                    <h4 class="mb-0"><a href="/tokoh/detail" style="color: #004e5a">Sarapan
+                                    <h4 class="mb-0"><a href="#" style="color: #004e5a">Sarapan
                                             Gratis</a>
                                     </h4>
                                     <p>Dengan menu yang dibawa oleh chef handal kami</p>

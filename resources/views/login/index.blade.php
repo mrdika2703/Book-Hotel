@@ -60,7 +60,7 @@
                                 <span class="ms-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                             </div>
 
-                            <input type="submit" value="Log In" class="btn mybutton w-100">
+                            <input type="submit" value="Login" class="btn mybutton w-100">
                         </form>
                         <p class="text-center mt-3 fw-bold">Belum punya akun? <a
                                 href="{{ route('register') }}">Register</a></p>

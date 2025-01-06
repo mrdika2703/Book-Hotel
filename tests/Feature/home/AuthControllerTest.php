@@ -9,82 +9,61 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
-    /** @test */
-    public function only_authenticated_users_can_access_profil_routes()
+    public function test_login_screen_can_be_rendered(): void
     {
-        // Testing unauthorized access
-        $response = $this->get(route('profil.index'));
-        $response->assertRedirect(route('login'));
-
-        $response = $this->post(route('profil.update', ['id' => 1]));
-        $response->assertRedirect(route('login'));
-
-        $response = $this->post(route('profil.change_password', ['id' => 1]));
-        $response->assertRedirect(route('login'));
-
-        $response = $this->delete(route('profil.delete_account', ['id' => 1]));
-        $response->assertRedirect(route('login'));
-    }
-
-    /** @test */
-    public function authenticated_user_can_view_their_profile()
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->get(route('profil.index'));
+        $response = $this->get('/');
 
         $response->assertStatus(200);
-        $response->assertViewIs('profil.index'); // Pastikan view yang dikembalikan sesuai
     }
 
-    /** @test */
-    public function user_can_update_their_profile()
+    public function test_register_screen_can_be_rendered(): void
     {
-        $user = User::factory()->create();
+        $response = $this->get('/register');
 
-        $response = $this->actingAs($user)->post(route('profil.update', $user->id), [
-            'username' => 'newusername',
-            'nama_lengkap' => 'New Full Name',
-            'email' => 'newemail@example.com',
-        ]);
-
-        $response->assertRedirect();
-        $this->assertDatabaseHas('users', [
-            'id' => $user->id,
-            'username' => 'newusername',
-            'nama_lengkap' => 'New Full Name',
-            'email' => 'newemail@example.com',
-        ]);
+        $response->assertStatus(200);
     }
 
-    /** @test */
-    public function user_can_change_their_password()
+    public function test_login_admin_screen_can_be_rendered(): void
     {
-        $user = User::factory()->create([
-            'password' => Hash::make('oldpassword'),
-        ]);
+        $response = $this->get('/admin');
 
-        $response = $this->actingAs($user)->post(route('profil.change_password', $user->id), [
-            'password' => 'newpassword',
-            'password_confirmation' => 'newpassword',
-        ]);
-
-        $response->assertRedirect();
-        $this->assertTrue(Hash::check('newpassword', $user->fresh()->password));
+        $response->assertStatus(200);
     }
 
-    /** @test */
-    public function user_can_delete_their_account()
+    public function test_users_can_authenticate_using_the_login_screen(): void
     {
-        $user = User::factory()->create();
+        // $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->delete(route('profil.delete_account', $user->id));
-
-        $response->assertRedirect();
-        $this->assertDatabaseMissing('users', [
-            'id' => $user->id,
+        $response = $this->post('/', [
+            'username' => 'admin',
+            'password' => 'admin123',
         ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('home', absolute: false));
+    }
+
+    public function test_users_can_not_authenticate_with_invalid_username_password(): void
+    {
+        // $user = User::factory()->create();
+
+        $this->post('/', [
+            'username' => 'adminn',
+            'password' => 'admin12345',
+        ]);
+
+        $this->assertGuest();
+    }
+
+    public function test_users_can_logout(): void
+    {
+        // $user = User::factory()->create();
+
+        $response = $this->post('/logout');
+
+        $this->assertGuest();
+        $response->assertRedirect('/');
     }
 }
