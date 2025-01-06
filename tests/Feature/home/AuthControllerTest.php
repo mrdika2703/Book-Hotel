@@ -57,6 +57,57 @@ class AuthControllerTest extends TestCase
         $this->assertGuest();
     }
 
+    public function test_admin_can_authenticate_using_the_login_screen(): void
+    {
+        // $user = User::factory()->create();
+
+        $response = $this->post('/admin', [
+            'username' => 'admin',
+            'password' => 'admin123',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('dashboard', absolute: false));
+    }
+
+    public function test_admin_can_not_authenticate_with_invalid_username_password(): void
+    {
+        // $user = User::factory()->create();
+
+        $this->post('/admin', [
+            'username' => 'adminn',
+            'password' => 'admin12345',
+        ]);
+
+        $this->assertGuest();
+    }
+
+
+    public function test_resepsionis_can_authenticate_using_the_login_screen(): void
+    {
+        // $user = User::factory()->create();
+
+        $response = $this->post('/admin', [
+            'username' => 'rafael',
+            'password' => 'admin123',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('resepsionis', absolute: false));
+    }
+
+    public function test_resepsionis_can_not_authenticate_with_invalid_username_password(): void
+    {
+        // $user = User::factory()->create();
+
+        $this->post('/admin', [
+            'username' => 'adminn',
+            'password' => 'admin12345',
+        ]);
+
+        $this->assertGuest();
+    }
+
     public function test_users_can_logout(): void
     {
         // $user = User::factory()->create();
@@ -65,5 +116,15 @@ class AuthControllerTest extends TestCase
 
         $this->assertGuest();
         $response->assertRedirect('/');
+    }
+
+    public function test_admin_resepsionis_can_logout(): void
+    {
+        // $user = User::factory()->create();
+
+        $response = $this->post('/logoutadm');
+
+        $this->assertGuest();
+        $response->assertRedirect('/admin');
     }
 }
